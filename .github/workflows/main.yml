@@ -1,0 +1,28 @@
+---
+name: Build
+
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ["cms", "client"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+          cache-dependency-path: ${{ matrix.app }}/pnpm-lock.yaml
+      - run: |
+          cd ${{ matrix.app }}
+          pnpm install

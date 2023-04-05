@@ -1,0 +1,32 @@
+---
+name: optom-resources
+
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    container_name: optom-resources_client
+    ports:
+      - "${CLIENT_PORT:-5173}:5173"
+    restart: unless-stopped
+    volumes:
+      - ./client:/code
+      - client_node_modules:/code/node_modules/
+  cms:
+    build:
+      context: ./cms
+      dockerfile: ./Dockerfile
+    container_name: optom-resources_cms
+    ports:
+      - "${CMS_PORT:-3333}:3333"
+    restart: unless-stopped
+    volumes:
+      - ./cms:/code
+      - cms_node_modules:/code/node_modules/
+
+version: "3.8"
+
+volumes:
+  client_node_modules:
+  cms_node_modules:
