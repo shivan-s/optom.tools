@@ -38,3 +38,4 @@ jobs:
           accountId: "2af0b6ae38d7dc64d9cef389245cf5fa"
           projectName: optom-resources-client
           directory: client/.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

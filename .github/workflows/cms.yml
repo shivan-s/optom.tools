@@ -37,3 +37,4 @@ jobs:
           accountId: "2af0b6ae38d7dc64d9cef389245cf5fa"
           projectName: optom-resources-cms
           directory: cms/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
