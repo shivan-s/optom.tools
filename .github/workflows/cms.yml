@@ -25,6 +25,7 @@ jobs:
           node-version: 18
           cache: "pnpm"
           cache-dependency-path: cms/pnpm-lock.yaml
-      - run: |
+      - name: Install deps and run test
+        run: |
           cd cms
           pnpm install
