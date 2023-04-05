@@ -31,7 +31,7 @@ jobs:
           pnpm install
           # npm test
       - name: Publish to Cloudflare
-        uses: actions/pages-action@v1
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: "2af0b6ae38d7dc64d9cef389245cf5fa"
