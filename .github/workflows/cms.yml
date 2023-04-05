@@ -1,0 +1,30 @@
+---
+name: CMS
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "cms/**"
+      - ".github/workflow/cms.yml"
+  pull_request:
+    paths:
+      - "cms/**"
+      - ".github/workflow/cms.yml"
+
+jobs:
+  cms:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+          cache-dependency-path: cms/pnpm-lock.yaml
+      - run: |
+          cd cms
+          pnpm install
