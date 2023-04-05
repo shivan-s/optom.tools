@@ -32,6 +32,7 @@ jobs:
           # npm test
           npm run build
       - name: Publish to Cloudflare
+        if: github.ref == 'refs/heads/main'
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
