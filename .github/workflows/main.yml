@@ -7,30 +7,35 @@ on:
   pull_request:
 
 jobs:
-  build:
+  cms:
+    name: "cms Build"
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        app: ["cms", "client"]
-    name: ${{ matrix.app }} CI
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/actions-setup@v2
         with:
           version: 7
-
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "pnpm"
-          cache-dependency-path: ${{ matrix.app }}/pnpm-lock.yaml
-
-      - name: Install deps
-        run: >
-          cd ${{ matrix.app }} && \
+          cache-dependency-path: cms/pnpm-lock.yaml
+      - run: |
           pnpm install
+
+  client:
+    name: "client Build"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/actions-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "pnpm"
+          cache-dependency-path: cms/pnpm-lock.yaml
+      - run: |
+          pnpm install
+          npm test
