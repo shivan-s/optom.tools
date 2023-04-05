@@ -6,11 +6,11 @@ on:
   push:
     paths:
       - "client/**"
-      - ".github/workflow/client.yml"
+      - ".github/workflows/client.yml"
   pull_request:
     paths:
       - "client/**"
-      - ".github/workflow/client.yml"
+      - ".github/workflows/client.yml"
 
 jobs:
   client:

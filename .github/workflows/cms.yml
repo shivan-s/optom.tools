@@ -6,11 +6,11 @@ on:
   push:
     paths:
       - "cms/**"
-      - ".github/workflow/cms.yml"
+      - ".github/workflows/cms.yml"
   pull_request:
     paths:
       - "cms/**"
-      - ".github/workflow/cms.yml"
+      - ".github/workflows/cms.yml"
 
 jobs:
   cms:
