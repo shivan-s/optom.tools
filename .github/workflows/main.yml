@@ -46,4 +46,4 @@ jobs:
       - name: Install deps
         run: >
           cd ${{ matrix.app }} && \
-          pnpm install --frozen-lockfile
+          pnpm install
