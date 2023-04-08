@@ -1,6 +1,8 @@
 FROM node:18-slim
 
-# hadolint ignore=DL3018
+ENV NODE_ENV=development
+
+# hadolint ignore=DL3016
 RUN npm update -g npm && \
   npm install -g pnpm && \
   apt-get update && \
