@@ -27,7 +27,7 @@ jobs:
       - name: Install deps and run test
         run: |
           cd client
-          pnpm exec install --with-deps
+          pnpm install
           npm test
           npm run build
       - name: Publish to Cloudflare
