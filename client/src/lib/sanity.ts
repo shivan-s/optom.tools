@@ -9,6 +9,7 @@ const config: ClientConfig = {
 
 export const client = createClient(config);
 
-export function getOptometrists() {
-	return client.fetch(`*[_type == "optometrist"]`);
+export async function getOptometrists() {
+	console.log(client);
+	return await client.fetch(`*[_type == "optometrist"]`);
 }

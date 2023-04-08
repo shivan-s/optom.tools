@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { getOptometrists } from '$lib/sanity';
 	import { createQuery } from '@tanstack/svelte-query';
+	import Loading from '../../components/Loading.svelte';
 
 	const query = createQuery({
 		queryKey: ['optometrists'],
-		queryFn: getOptometrists()
+		queryFn: getOptometrists
 	});
 
-	console.log(query);
-
-	$: data = $query.data;
+	$: optometrists = $query.data;
 	$: isLoading = $query.isLoading;
 	$: isSuccess = $query.isSuccess;
 	$: isError = $query.isError;
@@ -20,15 +19,15 @@
 	}
 </script>
 
-<h1 class="h1">Optometrist</h1>
+<h1 class="text-center">Optometrist</h1>
 
 {#if isLoading}
-	...waiting
+	<Loading />
 {/if}
-{#if isSuccess && data}
-	{#if data.optometrists && data.optometrists.length}
+{#if isSuccess && optometrists}
+	{#if optometrists && optometrists.length}
 		<ul>
-			{#each data.optometrists as optometrist}
+			{#each optometrists as optometrist}
 				<li>{optometrist.name}</li>
 			{/each}
 		</ul>
