@@ -46,7 +46,5 @@ repos:
     rev: v3.0.0-alpha.6
   - hooks:
       - id: commitizen
-      - id: commitizen-branch
-        stages: [push]
     repo: https://github.com/commitizen-tools/commitizen
     rev: v2.42.1
