@@ -8,9 +8,6 @@ on:
       - "cms/**"
       - ".github/workflows/cms.yml"
   pull_request:
-    paths:
-      - "cms/**"
-      - ".github/workflows/cms.yml"
 
 jobs:
   cms:
