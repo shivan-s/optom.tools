@@ -1,22 +1,10 @@
 <script lang="ts">
-	import type { Optometrist } from '../lib/types';
-	import type { PageData } from './$types';
-
-	let optometrists: Optometrist[];
-
-	export let data: PageData;
-
-	optometrists = data.optometrist;
+	const status = 'Work in progress';
 </script>
 
-<h1>Optometrist</h1>
-
-{#if optometrists && optometrists.length}
-	<ul>
-		{#each optometrists as optometrist}
-			<li>{optometrist.name}</li>
-		{/each}
-	</ul>
-{:else}
-	<p>No optometrists found.</p>
-{/if}
+<div class="hero min-h-full">
+	<div class="hero-content flex flex-col text-center">
+		<h1 class="text-5xl font-extrabold">Optometrist Resources</h1>
+		<p>{status}</p>
+	</div>
+</div>
