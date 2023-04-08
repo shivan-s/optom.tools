@@ -26,10 +26,10 @@ repos:
     repo: https://github.com/pre-commit/mirrors-eslint
     rev: v8.37.0
   - hooks:
-      - additional_dependencies:
-          - prettier-plugin-svelte
+      - id: prettier
+        additional_dependencies:
+          - "prettier-plugin-svelte"
         exclude: pnpm-lock.yaml
-        id: prettier
         types_or:
           - css
           - javascript
