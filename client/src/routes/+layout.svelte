@@ -19,9 +19,14 @@
 			icon: 'mdi:calculator'
 		},
 		{
-			label: 'Optometrists',
-			link: '/optometrists',
+			label: 'Practitioners',
+			link: '/practitioners',
 			icon: 'mdi:account-outline'
+		},
+		{
+			label: 'Clinics',
+			link: '/clinics',
+			icon: 'material-symbols:help-clinic-outline'
 		}
 	];
 

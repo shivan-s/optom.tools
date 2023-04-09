@@ -9,7 +9,19 @@ const config: ClientConfig = {
 
 export const client = createClient(config);
 
-export async function getOptometrists() {
-	console.log(client);
-	return await client.fetch(`*[_type == "optometrist"]`);
+export async function getPracititioners(
+	filter: 'optometrist' | 'ophthalmologist' | undefined,
+	q: string | undefined
+) {
+	if (filter === undefined) {
+		return await client.fetch(
+			`*[_type in ["optometrist","ophthalmologist"] && name match *${q}*]`
+		);
+	} else {
+		return await client.fetch(`*[_type == ${filter} && name match *${q}*]`);
+	}
+}
+
+export async function getClinics(q: string | null) {
+	return await client.fetch(`*[_type == "clinic"][name match "*${q || ''}*"]`);
 }

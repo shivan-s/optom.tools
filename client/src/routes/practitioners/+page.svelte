@@ -2,9 +2,10 @@
 	import { getOptometrists } from '$lib/sanity';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
+	import Error from '../../components/Error.svelte';
 
 	const query = createQuery({
-		queryKey: ['optometrists'],
+		queryKey: ['pracitioner'],
 		queryFn: getOptometrists
 	});
 
@@ -19,8 +20,11 @@
 	}
 </script>
 
-<h1 class="text-center">Optometrist</h1>
+<h1 class="text-center">Practitioners</h1>
 
+{#if isError}
+	<Error />
+{/if}
 {#if isLoading}
 	<Loading />
 {/if}
