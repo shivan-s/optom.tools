@@ -56,7 +56,7 @@
 					<div class="navbar-end" />
 				</div>
 				<div
-					class="pt-6 container prose mx-auto flex flex-col min-h-screen flex-grow gap-4"
+					class="py-6 container prose mx-auto flex flex-col min-h-screen flex-grow gap-4"
 				>
 					<slot />
 				</div>

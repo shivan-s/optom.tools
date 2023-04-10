@@ -23,6 +23,7 @@
 	});
 
 	$: pages = $query.data?.pages;
+	$: pageParams = $query.data?.pageParams;
 	$: isLoading = $query.isLoading;
 	$: isSuccess = $query.isSuccess;
 	$: isError = $query.isError;
@@ -69,7 +70,9 @@
 	</div>
 </form>
 
-<pre>{JSON.stringify($query, null, 4)}</pre>
+<pre>
+  {JSON.stringify(pageParams, null, 4)}
+</pre>
 
 {#if isError}
 	<Error />
@@ -78,8 +81,8 @@
 	<Loading />
 {/if}
 {#if isSuccess && pages}
-	{#each pages as { practitioners }}
-		{#if practitioners && practitioners.length}
+	{#if pages.length > 0}
+		{#each pages as { practitioners }}
 			{#each practitioners as practitioner}
 				<div class="card lg:card-side bg-base-100 shadow-xl">
 					<!-- <figure> -->
@@ -104,10 +107,10 @@
 					</div>
 				</div>
 			{/each}
-		{:else}
-			<p>No practitioners found.</p>
-		{/if}
-	{/each}
+		{/each}
+	{:else}
+		<p>No practitioners found.</p>
+	{/if}
 	<button
 		disabled={!hasNextPage || isFetchingNextPage}
 		on:click={() => fetchNextPage()}

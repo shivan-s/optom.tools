@@ -20,22 +20,16 @@ export async function getPractitioners(
 ) {
 	let nextCursor = undefined;
 	const practitioners = await client.fetch(
-		/* `*[ */
-		/*       _type == "practitioner" &&  */
-		/*       name match "*${q || ''}*"  */
-		/*       ${filter !== '' ? `&& profession in ['${filter}']` : ''} */
-		/*       ${cursor ? `&& _id > ${cursor}` : ''}] |  */
-		/*       order(_id) [0...${limit || 10}] */
-		/*   ` */
-		`*[_type == "practitioner" ${
-			cursor ? `&& _id > ${cursor}` : ''
-		}] | order(_id) [0 ... ${10}]`
+		`*[
+          _type == "practitioner" &&
+          name match "*${q || ''}*"
+          ${filter !== '' ? `&& profession in ['${filter}']` : ''}
+          && _id > "${cursor || ''}"] |
+          order(_id) [0...${limit || 10}]
+      `
 	);
-	console.log(practitioners.length);
-
 	if (practitioners.length > 0) {
-		const lastItem = practitioners.pop();
-		nextCursor = lastItem._id;
+		nextCursor = practitioners[practitioners.length - 1]._id;
 	} else {
 		nextCursor = undefined;
 	}
