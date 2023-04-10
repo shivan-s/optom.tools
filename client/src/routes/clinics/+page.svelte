@@ -8,15 +8,19 @@
 
 	let q = $page.url.searchParams.get('q');
 
-	$: clinics = createQuery({
+	$: query = createQuery({
 		queryKey: ['clinics', q],
 		queryFn: () => getClinics(q)
 	});
 
-	$: isError = $clinics.isError;
+	$: clinics = $query.data;
+	$: error = $query.error;
+	$: isLoading = $query.isLoading;
+	$: isSuccess = $query.isSuccess;
+	$: isError = $query.isError;
 
 	if (isError) {
-		console.error($clinics.error);
+		console.error(error);
 	}
 </script>
 
@@ -33,26 +37,31 @@
 	</div>
 </form>
 
-{#if $clinics.isError}
+{#if isError}
 	<Error />
 {/if}
-{#if $clinics.isLoading}
+{#if isLoading}
 	<Loading />
 {/if}
-{#if $clinics.isSuccess && $clinics.data}
-	{#if $clinics.data && $clinics.data.length}
-		{#each $clinics.data as clinic}
+{#if isSuccess && clinics}
+	{#if clinics && clinics.length}
+		{#each clinics as clinic}
 			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<figure>
-					<img
-						src="/images/stock/photo-1494232410401-ad00d5433cfa.jpg"
-						alt="Album"
-					/>
-				</figure>
+				<!-- <figure> -->
+				<!-- 	<img -->
+				<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
+				<!-- 		alt="Album" -->
+				<!-- 	/> -->
+				<!-- </figure> -->
 				<div class="card-body">
 					<h3 class="card-title">{clinic.name}</h3>
 					<div class="card-actions justify-end">
-						<button class="btn btn-primary">More</button>
+						<a
+							data-sveltekit-preload-code
+							data-sveltekit-preload-data
+							href={`/clinics/${clinic.slug.current}`}
+							class="btn btn-primary no-underline text-normal">More</a
+						>
 					</div>
 				</div>
 			</div>

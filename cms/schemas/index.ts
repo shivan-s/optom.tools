@@ -1,5 +1,4 @@
-import optometrist from './optometrist'
-import ophthalmologist from './ophthalmologist'
 import clinic from './clinic'
+import practitioner from './practitioner'
 
-export const schemaTypes = [optometrist, ophthalmologist, clinic]
+export const schemaTypes = [practitioner, clinic]

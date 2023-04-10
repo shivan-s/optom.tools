@@ -1,3 +1,18 @@
+import slugify from 'slugify'
+
+// TODO: types
+async function slugifier(input: string, schemaType: unknown, context: unknown) {
+  const randArray = new Uint32Array(4)
+  const slug = slugify(input, {lower: true})
+  const {getClient} = context
+  const client = getClient({apiVersion: '2022-12-07'})
+  const params = {slug}
+  const query = "count(*[_type == 'clinic' && slug.current == '$slug']{_id})"
+  return client.fetch(query, params).then((count) => {
+    return `${slug}${count > 0 ? `-${crypto.getRandomValues(randArray)}` : ''}`
+  })
+}
+
 export default {
   name: 'clinic',
   type: 'document',
@@ -8,6 +23,15 @@ export default {
       type: 'string',
       title: 'Name',
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name',
+        slugify: slugifier,
+      },
     },
     {
       name: 'link',
@@ -21,7 +45,7 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'ophthalmologist'}, {type: 'optometrist'}],
+          to: [{type: 'practitioner'}],
         },
       ],
       weak: true,
