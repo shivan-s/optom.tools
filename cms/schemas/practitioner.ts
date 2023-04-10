@@ -1,6 +1,6 @@
 import slugify from 'slugify'
 
-async function slugifier(input: string, schemaType: unknown, context: unknown) {
+async function slugifier(input: string, _schemaType: unknown, context: unknown) {
   const randArray = new Uint16Array(1)
   const slug = slugify(input, {lower: true})
   const {getClient} = context

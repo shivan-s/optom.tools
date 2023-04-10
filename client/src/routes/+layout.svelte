@@ -26,7 +26,7 @@
 		{
 			label: 'Clinics',
 			link: '/clinics',
-			icon: 'material-symbols:help-clinic-outline'
+			icon: 'icon-park-outline:glasses-one'
 		}
 	];
 
