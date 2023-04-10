@@ -27,6 +27,7 @@ jobs:
         run: |
           cd client
           pnpm install
+          npx playwright install --with-deps
           pnpm run test
           pnpm run build
       - name: Publish to Cloudflare
