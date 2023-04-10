@@ -27,8 +27,8 @@ jobs:
         run: |
           cd client
           pnpm install
-          # npm test
-          npm run build
+          pnpm run test
+          pnpm run build
       - name: Publish to Cloudflare
         if: github.ref == 'refs/heads/main'
         uses: cloudflare/pages-action@v1
