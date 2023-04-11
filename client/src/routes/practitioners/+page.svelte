@@ -117,7 +117,7 @@
 		class="btn"
 	>
 		{#if isFetching}
-			<span class="flex gap-1"><Loading /> Loading...</span>
+			<span class="flex gap-1 items-center"><Loading /> Loading...</span>
 		{:else if hasNextPage}
 			Load more
 		{:else}
