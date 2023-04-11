@@ -29,17 +29,7 @@ jobs:
           pnpm install
           # npm test
           npm run build
-      - name: Publish to Cloudflare Staging
-        if: github.ref != 'refs/heads/main'
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: "2af0b6ae38d7dc64d9cef389245cf5fa"
-          projectName: staging-optom-resources-client
-          directory: client/.svelte-kit/cloudflare
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish to Cloudflare Production
-        if: github.ref == 'refs/heads/main'
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
