@@ -9,6 +9,7 @@ specifiers:
   '@sveltejs/kit': ^1.15.1
   '@tailwindcss/typography': ^0.5.9
   '@tanstack/svelte-query': ^4.27.0
+  '@types/node': ^18.15.11
   '@typescript-eslint/eslint-plugin': ^5.57.1
   '@typescript-eslint/parser': ^5.57.1
   autoprefixer: ^10.4.14
@@ -43,6 +44,7 @@ devDependencies:
   '@sveltejs/adapter-cloudflare': 2.2.0_@sveltejs+kit@1.15.2
   '@sveltejs/kit': 1.15.2_svelte@3.58.0+vite@4.2.1
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.3.1
+  '@types/node': 18.15.11
   '@typescript-eslint/eslint-plugin': 5.58.0_gjoxkwycl3ml7yxlw3iuo7gyna
   '@typescript-eslint/parser': 5.58.0_voubu7prgxjfsfbgx5d4sqnwiy
   autoprefixer: 10.4.14_postcss@8.4.21
@@ -57,7 +59,7 @@ devDependencies:
   tailwindcss: 3.3.1_postcss@8.4.21
   tslib: 2.5.0
   typescript: 5.0.4
-  vite: 4.2.1
+  vite: 4.2.1_@types+node@18.15.11
   vitest: 0.25.8
 
 packages:
@@ -656,7 +658,7 @@ packages:
       svelte: 3.58.0
       tiny-glob: 0.2.9
       undici: 5.20.0
-      vite: 4.2.1
+      vite: 4.2.1_@types+node@18.15.11
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -674,7 +676,7 @@ packages:
       magic-string: 0.30.0
       svelte: 3.58.0
       svelte-hmr: 0.15.1_svelte@3.58.0
-      vite: 4.2.1
+      vite: 4.2.1_@types+node@18.15.11
       vitefu: 0.2.4_vite@4.2.1
     transitivePeerDependencies:
       - supports-color
@@ -2580,39 +2582,6 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  /vite/4.2.1:
-    resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.17.16
-      postcss: 8.4.21
-      resolve: 1.22.2
-      rollup: 3.20.2
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /vite/4.2.1_@types+node@18.15.11:
     resolution: {integrity: sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -2655,7 +2624,7 @@ packages:
       vite:
         optional: true
     dependencies:
-      vite: 4.2.1
+      vite: 4.2.1_@types+node@18.15.11
     dev: true
 
   /vitest/0.25.8:

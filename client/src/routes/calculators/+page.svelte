@@ -7,6 +7,8 @@
 	export let data: PageData;
 </script>
 
+<h1 class="text-center">Calculators</h1>
+
 <form method="GET" action="?q" data-sveltekit-keepfocus>
 	<div class="form-control">
 		<label for="q" class="label"><span class="label-text">Search</span></label>
@@ -35,7 +37,7 @@
 		<div class="tooltip" data-tip={calculator.description}>
 			<a
 				href={`/calculators${calculator.link}`}
-				class="btn normal-case text-md no-underline"
+				class="btn normal-case text-md no-underline text-white"
 			>
 				{calculator.label}
 			</a>
