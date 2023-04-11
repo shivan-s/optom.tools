@@ -35,14 +35,29 @@
 {/if}
 {#if isSuccess && practitioner}
 	<h1 class="text-center">{practitioner.name}</h1>
+	<div class="flex flex-wrap gap-1 justify-center">
+		{#each practitioner.profession as profession}
+			<div class="badge badge-primary capitalize">{profession}</div>
+		{/each}
+		{#if practitioner.subSpecialties}
+			{#each practitioner.subSpecialties as specialty}
+				<div class="badge capitalize">
+					{specialty.replace(/([A-Z])/g, ' $1')}
+				</div>
+			{/each}
+		{/if}
+		{#if practitioner.specialties}
+			{#each practitioner.specialties as specialty}
+				<div class="badge capitalize">
+					{specialty.replace(/([A-Z])/g, ' $1')}
+				</div>
+			{/each}
+		{/if}
+	</div>
+	<div class="flex flex-wrap gap-1 justify-center" />
 	<p class="text-sm">
 		Updated {formatDistanceToNow(new Date(practitioner._updatedAt))}
 	</p>
-	<div class="flex flex-wrap gap-1">
-		{#each practitioner.subSpecialties as subSpeciality}
-			<div class="badge capitalize">{subSpeciality}</div>
-		{/each}
-	</div>
 	<h2>
 		<span class="flex items-center gap-2"
 			><Icon icon="icon-park-outline:glasses-one" />{practitioner.clinics
@@ -51,14 +66,14 @@
 				: 'Clinic'}</span
 		>
 	</h2>
-	{#each practitioner?.clinics as clinic}
+	{#each practitioner.clinics as clinic}
 		<div class="card lg:card-side bg-base-100 shadow-xl">
-			<figure>
-				<img
-					src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag"
-					alt="Album"
-				/>
-			</figure>
+			<!-- <figure> -->
+			<!-- 	<img -->
+			<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
+			<!-- 		alt="Album" -->
+			<!-- 	/> -->
+			<!-- </figure> -->
 			<div class="card-body">
 				<h3 class="card-title">{clinic.name}</h3>
 				<div class="card-actions justify-end">
@@ -71,5 +86,5 @@
 		</div>
 	{/each}
 	<hr />
-	<p>{JSON.stringify(practitioner, null, 2)}</p>
+	<pre>{JSON.stringify(practitioner, null, 2)}</pre>
 {/if}

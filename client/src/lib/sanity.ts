@@ -21,12 +21,12 @@ export async function getPractitioners(
 	let nextCursor = undefined;
 	const practitioners = await client.fetch(
 		`*[
-          _type == "practitioner" &&
-          name match "*${q || ''}*"
-          ${filter !== '' ? `&& profession in ['${filter}']` : ''}
-          && _id > "${cursor || ''}"] |
-          order(_id) [0...${limit || 10}]
-      `
+            _type == "practitioner"
+            && name match "*${q || ''}*"
+            ${filter !== '' ? `&& '${filter}' in profession` : ''}
+            && _id > "${cursor || ''}"] |
+            order(_id) [0...${limit || 10}]
+        `
 	);
 	if (practitioners.length > 0) {
 		nextCursor = practitioners[practitioners.length - 1]._id;
@@ -39,8 +39,7 @@ export async function getPractitioners(
 export async function getPracititionerFromSlug(slug: string) {
 	const practitioner = await client.fetch(
 		`*[
-      _type == "practitioner" && slug.current == "${slug}"][0]{
-            ...,
+            _type == "practitioner" && slug.current == "${slug}"][0]{...,
             "clinics": *[_type == "clinic" && references(^._id)]
           }`
 	);
@@ -50,14 +49,32 @@ export async function getPracititionerFromSlug(slug: string) {
 	return practitioner;
 }
 
-export async function getClinics(q: string | null) {
-	return await client.fetch(`*[_type == "clinic"][name match "*${q || ''}*"]`);
+export async function getClinics(
+	q: string | null,
+	cursor: string | undefined,
+	limit: number | undefined
+) {
+	let nextCursor = undefined;
+	const clinics = await client.fetch(
+		`*[
+        _type == "clinic"
+        && name match "*${q || ''}*"
+        && _id > "${cursor || ''}"] |
+        order(_id) [0...${limit || 10}]
+    `
+	);
+	if (clinics.length > 0) {
+		nextCursor = clinics[clinics.length - 1]._id;
+	} else {
+		nextCursor = undefined;
+	}
+	return { clinics, cursor: nextCursor };
 }
 
 export async function getClinicFromSlug(slug: string) {
 	const clinic = await client.fetch(
-		`*[_type == "clinic" && slug.current == "${slug}"][0]{
-            ...,
+		`*[
+            _type == "clinic" && slug.current == "${slug}"][0]{...,
             "practitioners": *[_type == "practitioner" && references(^._id)]
           }`
 	);

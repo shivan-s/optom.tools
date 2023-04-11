@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { getPractitioners } from '$lib/sanity';
-	import { createInfiniteQuery, createQuery } from '@tanstack/svelte-query';
+	import { createInfiniteQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
 
-	const LIMIT = 1;
+	const LIMIT = 10;
 	let filter = $page.url.searchParams.get('filter') || '';
 	let q = $page.url.searchParams.get('q');
 
@@ -23,7 +23,6 @@
 	});
 
 	$: pages = $query.data?.pages;
-	$: pageParams = $query.data?.pageParams;
 	$: isLoading = $query.isLoading;
 	$: isSuccess = $query.isSuccess;
 	$: isError = $query.isError;
@@ -70,10 +69,6 @@
 	</div>
 </form>
 
-<pre>
-  {JSON.stringify(pageParams, null, 4)}
-</pre>
-
 {#if isError}
 	<Error />
 {/if}
@@ -81,7 +76,8 @@
 	<Loading />
 {/if}
 {#if isSuccess && pages}
-	{#if pages.length > 0}
+	<hr />
+	{#if pages.length > 0 && pages[0].practitioners?.length > 0}
 		{#each pages as { practitioners }}
 			{#each practitioners as practitioner}
 				<div class="card lg:card-side bg-base-100 shadow-xl">
@@ -93,10 +89,24 @@
 					<!-- </figure> -->
 					<div class="card-body">
 						<h3 class="card-title">{practitioner.name}</h3>
-						<div class="flex gap-1">
+						<div class="flex flex-wrap gap-1">
 							{#each practitioner.profession as profession}
-								<div class="capitalize badge">{profession}</div>
+								<div class="capitalize badge badge-primary">{profession}</div>
 							{/each}
+							{#if practitioner.specialties}
+								{#each practitioner.specialties as specialty}
+									<div class="capitalize badge">
+										{specialty.replace(/([A-Z])/g, ' $1')}
+									</div>
+								{/each}
+							{/if}
+							{#if practitioner.subSpecialties}
+								{#each practitioner.subSpecialties as specialty}
+									<div class="capitalize badge">
+										{specialty.replace(/([A-Z])/g, ' $1')}
+									</div>
+								{/each}
+							{/if}
 						</div>
 						<div class="card-actions justify-end">
 							<a
@@ -108,6 +118,7 @@
 				</div>
 			{/each}
 		{/each}
+		<hr />
 	{:else}
 		<p>No practitioners found.</p>
 	{/if}

@@ -36,7 +36,9 @@
 {#if isSuccess && clinic}
 	<h1 class="text-center">{clinic.name}</h1>
 	<p class="text-sm">
-		Updated {formatDistanceToNow(new Date(clinic._updatedAt))}
+		Updated {formatDistanceToNow(new Date(clinic._updatedAt), {
+			addSuffix: true
+		})}
 	</p>
 	<p>Webpage <a href={clinic.link}>{clinic.link}</a></p>
 	<h2>
@@ -44,7 +46,7 @@
 			><Icon icon="mdi:account-outline" />Practitioners</span
 		>
 	</h2>
-	{#each clinic.practitioners as pracitioner}
+	{#each clinic.practitioners as practitioner}
 		<div class="card lg:card-side bg-base-100 shadow-xl">
 			<!-- <figure> -->
 			<!-- 	<img -->
@@ -53,15 +55,18 @@
 			<!-- 	/> -->
 			<!-- </figure> -->
 			<div class="card-body">
-				<h3 class="card-title">{pracitioner.name}</h3>
+				<h3 class="card-title">{practitioner.name}</h3>
 				<div class="flex flex-wrap gap-1">
-					{#each pracitioner.subSpecialties as subSpeciality}
+					{#each practitioner.profession as profession}
+						<div class="badge badge-primary capitalize">{profession}</div>
+					{/each}
+					{#each practitioner.subSpecialties as subSpeciality}
 						<div class="badge capitalize">{subSpeciality}</div>
 					{/each}
 				</div>
 				<div class="card-actions justify-end">
 					<a
-						href={`/pracitioners/${pracitioner.slug.current}`}
+						href={`/practitioners/${practitioner.slug.current}`}
 						class="btn btn-primary no-underline text-normal">More</a
 					>
 				</div>
