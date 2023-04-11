@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { formatDistanceToNow } from 'date-fns';
 	import Icon from '@iconify/svelte';
+	import Alert from '../../../components/Alert.svelte';
 
 	const pathname = $page.url.pathname;
 
@@ -39,6 +40,9 @@
 		{#each practitioner.profession as profession}
 			<div class="badge badge-primary capitalize">{profession}</div>
 		{/each}
+		{#if practitioner.locum}
+			<div class="badge badge-secondary capitalize">locum</div>
+		{/if}
 		{#if practitioner.subSpecialties}
 			{#each practitioner.subSpecialties as specialty}
 				<div class="badge capitalize">
@@ -55,9 +59,6 @@
 		{/if}
 	</div>
 	<div class="flex flex-wrap gap-1 justify-center" />
-	<p class="text-sm">
-		Updated {formatDistanceToNow(new Date(practitioner._updatedAt))}
-	</p>
 	<h2>
 		<span class="flex items-center gap-2"
 			><Icon icon="icon-park-outline:glasses-one" />{practitioner.clinics
@@ -66,25 +67,34 @@
 				: 'Clinic'}</span
 		>
 	</h2>
-	{#each practitioner.clinics as clinic}
-		<div class="card lg:card-side bg-base-100 shadow-xl">
-			<!-- <figure> -->
-			<!-- 	<img -->
-			<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-			<!-- 		alt="Album" -->
-			<!-- 	/> -->
-			<!-- </figure> -->
-			<div class="card-body">
-				<h3 class="card-title">{clinic.name}</h3>
-				<div class="card-actions justify-end">
-					<a
-						href={`/pracitioners/${practitioner.slug.current}`}
-						class="btn btn-primary no-underline text-normal">More</a
-					>
+	{#if practitioner.clinics.length > 0}
+		{#each practitioner.clinics as clinic}
+			<div class="card lg:card-side bg-base-100 shadow-xl">
+				<!-- <figure> -->
+				<!-- 	<img -->
+				<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
+				<!-- 		alt="Album" -->
+				<!-- 	/> -->
+				<!-- </figure> -->
+				<div class="card-body">
+					<h3 class="card-title">{clinic.name}</h3>
+					<div class="card-actions justify-end">
+						<a
+							href={`/pracitioners/${practitioner.slug.current}`}
+							class="btn btn-primary no-underline text-normal">More</a
+						>
+					</div>
 				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	{:else}
+		<Alert message={`${practitioner.name} is not registered to a clinic.`} />
+	{/if}
 	<hr />
-	<pre>{JSON.stringify(practitioner, null, 2)}</pre>
+	<!-- <pre>{JSON.stringify(practitioner, null, 2)}</pre> -->
+	<p class="text-sm text-right">
+		Updated {formatDistanceToNow(new Date(practitioner._updatedAt), {
+			addSuffix: true
+		})}
+	</p>
 {/if}

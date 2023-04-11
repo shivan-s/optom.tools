@@ -25,6 +25,8 @@
 	if (isError) {
 		console.error(error);
 	}
+
+	const COUNTRY = { nz: 'New Zealand', aus: 'Australia' };
 </script>
 
 {#if isError}
@@ -35,12 +37,22 @@
 {/if}
 {#if isSuccess && clinic}
 	<h1 class="text-center">{clinic.name}</h1>
-	<p class="text-sm">
-		Updated {formatDistanceToNow(new Date(clinic._updatedAt), {
-			addSuffix: true
-		})}
-	</p>
-	<p>Webpage <a href={clinic.link}>{clinic.link}</a></p>
+	<a href={clinic.link}>{clinic.link}</a>
+	<h2>
+		<span class="flex items-center gap-2">
+			<Icon icon="material-symbols:location-on" />
+			Locations</span
+		>
+	</h2>
+	<div class="flex flex-col gap-2">
+		{#each clinic.addresses as address}
+			<div class="flex flex-col gap-1">
+				<span>{address.street}</span>
+				<span>{address.city} {address.postcode || ''}</span>
+				<span>{COUNTRY[address.country]}</span>
+			</div>
+		{/each}
+	</div>
 	<h2>
 		<span class="flex items-center gap-2"
 			><Icon icon="mdi:account-outline" />Practitioners</span
@@ -74,5 +86,10 @@
 		</div>
 	{/each}
 	<hr />
+	<p class="text-sm text-right">
+		Updated {formatDistanceToNow(new Date(clinic._updatedAt), {
+			addSuffix: true
+		})}
+	</p>
 	<!-- {JSON.stringify(data.practitioners, null, 4)} -->
 {/if}
