@@ -88,7 +88,7 @@
 			</div>
 		{/each}
 	{:else}
-		<Alert message={`${practitioner.name} is not registered to a clinic.`} />
+		<Alert message={`${practitioner.name} is not registered to any clinics`} />
 	{/if}
 	<hr />
 	<!-- <pre>{JSON.stringify(practitioner, null, 2)}</pre> -->

@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { formatDistanceToNow } from 'date-fns';
 	import Icon from '@iconify/svelte';
+	import Alert from '../../../components/Alert.svelte';
 
 	const pathname = $page.url.pathname;
 
@@ -58,33 +59,37 @@
 			><Icon icon="mdi:account-outline" />Practitioners</span
 		>
 	</h2>
-	{#each clinic.practitioners as practitioner}
-		<div class="card lg:card-side bg-base-100 shadow-xl">
-			<!-- <figure> -->
-			<!-- 	<img -->
-			<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-			<!-- 		alt="Album" -->
-			<!-- 	/> -->
-			<!-- </figure> -->
-			<div class="card-body">
-				<h3 class="card-title">{practitioner.name}</h3>
-				<div class="flex flex-wrap gap-1">
-					{#each practitioner.profession as profession}
-						<div class="badge badge-primary capitalize">{profession}</div>
-					{/each}
-					{#each practitioner.subSpecialties as subSpeciality}
-						<div class="badge capitalize">{subSpeciality}</div>
-					{/each}
-				</div>
-				<div class="card-actions justify-end">
-					<a
-						href={`/practitioners/${practitioner.slug.current}`}
-						class="btn btn-primary no-underline text-normal">More</a
-					>
+	{#if clinic.practitioners.length > 0}
+		{#each clinic.practitioners as practitioner}
+			<div class="card lg:card-side bg-base-100 shadow-xl">
+				<!-- <figure> -->
+				<!-- 	<img -->
+				<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
+				<!-- 		alt="Album" -->
+				<!-- 	/> -->
+				<!-- </figure> -->
+				<div class="card-body">
+					<h3 class="card-title">{practitioner.name}</h3>
+					<div class="flex flex-wrap gap-1">
+						{#each practitioner.profession as profession}
+							<div class="badge badge-primary capitalize">{profession}</div>
+						{/each}
+						{#each practitioner.subSpecialties as subSpeciality}
+							<div class="badge capitalize">{subSpeciality}</div>
+						{/each}
+					</div>
+					<div class="card-actions justify-end">
+						<a
+							href={`/practitioners/${practitioner.slug.current}`}
+							class="btn btn-primary no-underline text-normal">More</a
+						>
+					</div>
 				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	{:else}
+		<Alert message={`${clinic.name} has no practitioners registered`} />
+	{/if}
 	<hr />
 	<p class="text-sm text-right">
 		Updated {formatDistanceToNow(new Date(clinic._updatedAt), {

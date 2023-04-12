@@ -5,6 +5,7 @@
 	import Error from '../../components/Error.svelte';
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
+	import Alert from '../../components/Alert.svelte';
 
 	const LIMIT = 10;
 	let filter = $page.url.searchParams.get('filter') || '';
@@ -119,20 +120,20 @@
 			{/each}
 		{/each}
 		<hr />
+		<button
+			disabled={!hasNextPage || isFetchingNextPage}
+			on:click={() => fetchNextPage()}
+			class="btn"
+		>
+			{#if isFetching}
+				<span class="flex gap-1 items-center"><Loading /> Loading...</span>
+			{:else if hasNextPage}
+				Load more
+			{:else}
+				No more to load
+			{/if}
+		</button>
 	{:else}
-		<p>No practitioners found.</p>
+		<Alert message="No clinics found" />
 	{/if}
-	<button
-		disabled={!hasNextPage || isFetchingNextPage}
-		on:click={() => fetchNextPage()}
-		class="btn"
-	>
-		{#if isFetching}
-			<span class="flex gap-1 items-center"><Loading /> Loading...</span>
-		{:else if hasNextPage}
-			Load more
-		{:else}
-			No more to load
-		{/if}
-	</button>
 {/if}
