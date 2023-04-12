@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@iconify/svelte': ^3.1.0
-  '@playwright/test': ^1.32.2
+  '@playwright/test': ^1.32.3
   '@sanity/client': ^5.4.2
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/adapter-cloudflare': ^2.2.0
