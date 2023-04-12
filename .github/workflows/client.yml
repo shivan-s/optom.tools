@@ -28,7 +28,13 @@ jobs:
           cd client
           pnpm install
           npx playwright install --with-deps
+      - name: Run tests
+        run: |
+          cd client
           pnpm run test
+      - name: Run build
+        run: |
+          cd client
           pnpm run build
       - name: Publish to Cloudflare
         uses: cloudflare/pages-action@v1
