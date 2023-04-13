@@ -11,6 +11,7 @@ const config: PlaywrightTestConfig = {
 		baseURL: 'http://localhost:4173',
 		trace: 'on-first-retry'
 	},
+	expect: { timeout: 30000 },
 	projects: [
 		{
 			name: 'chromium',

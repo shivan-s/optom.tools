@@ -7,14 +7,15 @@ test.describe('e2e', () => {
 
 	test('page navigation', async ({ page }) => {
 		await page.getByRole('link', { name: 'Home' }).click();
-		expect(
+		await expect(
 			page.getByRole('heading', { name: 'Optometry Resources' })
 		).toBeVisible();
-		await page.getByRole('link', { name: 'Calculators' }).click();
-		expect(page.getByRole('heading', { name: 'Calculators' })).toBeVisible();
-		await page.getByRole('link', { name: 'Practitioners' }).click();
-		expect(page.getByRole('heading', { name: 'Practitioners' })).toBeVisible();
-		await page.getByRole('link', { name: 'Clinics' }).click();
-		expect(page.getByRole('heading', { name: 'Clinics' })).toBeVisible();
+
+		const NAV_LINKS = ['Calculators', 'Practitioners', 'Clinics'];
+
+		NAV_LINKS.map(async (link: string) => {
+			await page.getByRole('link', { name: link }).click();
+			await expect(page.getByRole('heading', { name: link })).toBeVisible();
+		});
 	});
 });
