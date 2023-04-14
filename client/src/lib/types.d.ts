@@ -11,5 +11,5 @@ export type Calculator = {
 export type NavbarItem = {
 	label: string;
 	link: string;
-	icon?: string;
+	icon: string;
 };

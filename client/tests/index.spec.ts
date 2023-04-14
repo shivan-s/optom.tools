@@ -1,14 +1,24 @@
 import { expect, test } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	await expect(
-		page.getByRole('heading', { name: 'Optometry Resources' })
-	).toBeVisible();
-});
+test.describe('e2e', () => {
+	test.beforeEach(async ({ page }) => {
+		await page.goto('/');
+	});
 
-test('home button works', async ({ page, baseURL }) => {
-	await page.goto('/');
-	await page.getByRole('link', { name: 'Optometry Resources' }).click();
-	expect(page.url()).toBe(baseURL);
+	test('page navigation', async ({ page }) => {
+		await page.getByRole('link', { name: 'Home' }).click();
+		await expect(
+			page.getByRole('heading', { name: 'Optometry Resources' })
+		).toBeVisible();
+		await page.getByRole('link', { name: 'Calculators' }).click();
+		await expect(
+			page.getByRole('heading', { name: 'Calculators' })
+		).toBeVisible();
+		await page.getByRole('link', { name: 'Practitioners' }).click();
+		await expect(
+			page.getByRole('heading', { name: 'Practitioners' })
+		).toBeVisible();
+		await page.getByRole('link', { name: 'Clinics' }).click();
+		await expect(page.getByRole('heading', { name: 'Clinics' })).toBeVisible();
+	});
 });

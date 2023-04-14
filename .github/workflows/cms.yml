@@ -28,8 +28,7 @@ jobs:
           cd cms
           pnpm install
           npm run build
-      - name: Publish to Cloudflare
-        if: github.ref == 'refs/heads/main'
+      - name: Publish to Cloudflare Production
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

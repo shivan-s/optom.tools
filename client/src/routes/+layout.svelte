@@ -19,9 +19,14 @@
 			icon: 'mdi:calculator'
 		},
 		{
-			label: 'Optometrists',
-			link: '/optometrists',
+			label: 'Practitioners',
+			link: '/practitioners',
 			icon: 'mdi:account-outline'
+		},
+		{
+			label: 'Clinics',
+			link: '/clinics',
+			icon: 'icon-park-outline:glasses-one'
 		}
 	];
 
@@ -51,7 +56,7 @@
 					<div class="navbar-end" />
 				</div>
 				<div
-					class="pt-6 container prose mx-auto flex flex-col min-h-screen flex-grow gap-4"
+					class="py-6 container prose mx-auto flex flex-col min-h-screen flex-grow gap-4"
 				>
 					<slot />
 				</div>
@@ -60,7 +65,9 @@
 		</div>
 		<div class="drawer-side">
 			<label for="my-drawer" class="drawer-overlay" />
-			<ul class="menu p-4 w-60 bg-base-100 text-base-content">
+			<ul
+				class="menu flex flex-col gap-1 p-4 w-60 bg-base-100 text-base-content"
+			>
 				{#each navbarItems as navbarItem}
 					<li>
 						<a
