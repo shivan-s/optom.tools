@@ -17,3 +17,4 @@ Dockerfile
 .env
 .dockerignore
 npm-debug.log
+.docker/

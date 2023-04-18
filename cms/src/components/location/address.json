@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_location_addresses",
+  "info": {
+    "displayName": "Address"
+  },
+  "options": {},
+  "attributes": {
+    "Street": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "City": {
+      "type": "string",
+      "required": true,
+      "maxLength": 50
+    },
+    "Country": {
+      "type": "enumeration",
+      "enum": [
+        "Australia",
+        "New Zealand"
+      ]
+    }
+  }
+}
