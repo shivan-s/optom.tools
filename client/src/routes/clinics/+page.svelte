@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getClinics } from '$lib/sanity';
+	import { getClinics } from '$lib/cms';
 	import { createInfiniteQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';
@@ -24,6 +24,8 @@
 	$: hasNextPage = $query.hasNextPage;
 	$: isFetching = $query.isFetching;
 	$: isFetchingNextPage = $query.isFetchingNextPage;
+
+	console.log(query);
 
 	if (isError) {
 		console.error(error);

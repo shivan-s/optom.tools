@@ -40,10 +40,11 @@
   },
   "type": "module",
   "dependencies": {
-    "@sanity/client": "^5.4.2",
     "@tanstack/svelte-query": "^4.27.0",
     "daisyui": "^2.51.5",
     "date-fns": "^2.29.3",
+    "graphql": "^16.6.0",
+    "graphql-request": "^6.0.0",
     "zod": "^3.21.4"
   }
 }

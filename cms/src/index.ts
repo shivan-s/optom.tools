@@ -5,7 +5,20 @@ export default {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+
+    extensionService.use({
+      resolversConfig: {
+        "Query.optometrists": {
+          auth: false,
+        },
+        "Query.clinics": {
+          auth: false,
+        },
+      },
+    });
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
