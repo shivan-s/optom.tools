@@ -41,10 +41,15 @@
   "type": "module",
   "dependencies": {
     "@tanstack/svelte-query": "^4.27.0",
+    "@types/dompurify": "^3.0.2",
+    "@types/marked": "^4.0.8",
     "daisyui": "^2.51.5",
     "date-fns": "^2.29.3",
+    "dompurify": "^3.0.2",
     "graphql": "^16.6.0",
     "graphql-request": "^6.0.0",
+    "jsdom": "^21.1.1",
+    "marked": "^4.3.0",
     "zod": "^3.21.4"
   }
 }

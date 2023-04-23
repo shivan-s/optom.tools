@@ -3,7 +3,7 @@
 
 # Optometry Resources
 
-Using Sanity as a Headless CMS and SvelteKit to serve optometry related resources.cclient/
+Using Strapi as a Headless CMS and SvelteKit to serve optometry related resources.cclient/
 
 Hosted using Cloudflare pages and deployed via Github actions.
 

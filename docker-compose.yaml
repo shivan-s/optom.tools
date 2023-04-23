@@ -9,7 +9,7 @@ services:
     container_name: optom-resources_client
     env_file: .env
     ports:
-      - "${CLIENT_PORT:-5173}:5173"
+      - "${PUBLIC_CLIENT_PORT:-5173}:5173"
     restart: unless-stopped
     volumes:
       - ./client:/code
@@ -23,7 +23,7 @@ services:
       - db
     env_file: .env
     ports:
-      - "${CMS_PORT:-1337}:1337"
+      - "${PUBLIC_CMS_PORT:-1337}:1337"
     restart: unless-stopped
     volumes:
       - ./cms:/code

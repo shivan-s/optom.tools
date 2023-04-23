@@ -13,6 +13,7 @@
 			link: '/',
 			icon: 'ic:outline-home'
 		},
+		{ label: 'About', link: '/about', icon: 'mdi:about-circle-outline' },
 		{
 			label: 'Calculators',
 			link: '/calculators',

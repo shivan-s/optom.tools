@@ -10,6 +10,9 @@ export default {
 
     extensionService.use({
       resolversConfig: {
+        "Query.about": {
+          auth: false,
+        },
         "Query.optometrists": {
           auth: false,
         },

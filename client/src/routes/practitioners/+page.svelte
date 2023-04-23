@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPractitioners } from '$lib/sanity';
+	import { getPractitioners } from '$lib/cms';
 	import { createInfiniteQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';

@@ -12,7 +12,8 @@
 
 	$: query = createInfiniteQuery({
 		queryKey: ['clinics', q],
-		queryFn: ({ pageParam = undefined }) => getClinics(q, pageParam, LIMIT)
+		queryFn: ({ pageParam = 0 }) => getClinics(q, pageParam, LIMIT),
+        getNextPageParam: (lastPage) => lastPage.cursor
 	});
 
 	$: pages = $query.data?.pages;
@@ -24,8 +25,6 @@
 	$: hasNextPage = $query.hasNextPage;
 	$: isFetching = $query.isFetching;
 	$: isFetchingNextPage = $query.isFetchingNextPage;
-
-	console.log(query);
 
 	if (isError) {
 		console.error(error);
@@ -53,9 +52,9 @@
 {/if}
 {#if isSuccess && pages}
 	<hr />
-	{#if pages.length > 0 && pages[0].clinics?.length > 0}
+	{#if pages.length > 0 && pages[0].clinics.data.length > 0}
 		{#each pages as { clinics }}
-			{#each clinics as clinic}
+			{#each clinics.data as { attributes: clinic }}
 				<div class="card lg:card-side bg-base-100 shadow-xl">
 					<!-- <figure> -->
 					<!-- 	<img -->
@@ -64,12 +63,12 @@
 					<!-- 	/> -->
 					<!-- </figure> -->
 					<div class="card-body">
-						<h3 class="card-title">{clinic.name}</h3>
+						<h3 class="card-title">{clinic.Name}</h3>
 						<div class="card-actions justify-end">
 							<a
 								data-sveltekit-preload-code
 								data-sveltekit-preload-data
-								href={`/clinics/${clinic.slug.current}`}
+								href={`/clinics/${clinic.Slug}`}
 								class="btn btn-primary no-underline text-normal">More</a
 							>
 						</div>
