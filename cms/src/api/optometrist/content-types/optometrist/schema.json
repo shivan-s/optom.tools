@@ -25,12 +25,6 @@
     "Locum": {
       "type": "boolean"
     },
-    "clinics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::clinic.clinic",
-      "inversedBy": "optometrists"
-    },
     "Image": {
       "type": "media",
       "multiple": false,
@@ -46,6 +40,12 @@
       "type": "component",
       "repeatable": true,
       "component": "location.specialities"
+    },
+    "Clinics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::clinic.clinic",
+      "mappedBy": "Optometrists"
     }
   }
 }

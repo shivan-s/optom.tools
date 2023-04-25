@@ -46,17 +46,17 @@ export async function getClinics(
 	const query = gql`
         {
             clinics(pagination: {
-              limit: ${limit || LIMIT},
-              start: ${cursor || 0} }) {
-                data {
-                    id,
-                    attributes {
-                        Name
-                        Slug
-                        Link
-                        Email
-                    }
-                }
+                limit: ${limit || LIMIT},
+                start: ${cursor || 0} }) {
+                    data {
+                        id
+                        attributes {
+                            Name
+                            Slug
+                            Link
+                            Email
+                        }
+                  }
             }
         }`;
 
@@ -74,28 +74,58 @@ export async function getClinics(
 	return { clinics, cursor: nextCursor };
 }
 
+type ClinicFromSlug = {
+	id: string;
+	attributes: {
+		Name: string;
+		Slug: string;
+		Link: string;
+		Email: string;
+		Address: {
+			Street: string;
+			City: string;
+			Country: string;
+		}[];
+		Optometrists: {
+			data: {
+				attributes: {
+					Name: string;
+				}[];
+			};
+		};
+	};
+};
+
 export async function getClinicFromSlug(slug: string) {
-	const query = gql`
-        {
-            clinics(filters: { Slug: { eq: ${slug}): {
-                {
-                data {
-                    id,
-                    attributes {
-                        Name
-                        Slug
-                        Link
-                        Email
-                        addresses
-                        updatedAt
+	const query = gql`{
+                clinics(filters: { Slug: { eq: "${slug}" } }) {
+                    data {
+                        id
+                        attributes {
+                            Name
+                            Link
+                            Email
+                            Address {
+                              Street
+                              City
+                              Country
+                            }
+                            Optometrists {
+                              data {
+                                attributes {
+                                  Name
+                                }
+                              }
+                            }
+                            updatedAt
+                        }
                     }
-                }
             }
         }`;
 
 	const { clinics } = (await client.request(query)) as {
 		clinics: {
-			data: Clinic[];
+			data: ClinicFromSlug[];
 		};
 	};
 
