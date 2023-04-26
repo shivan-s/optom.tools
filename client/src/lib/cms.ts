@@ -90,9 +90,15 @@ type ClinicFromSlug = {
 			data: {
 				attributes: {
 					Name: string;
-				}[];
-			};
+					Slug: string;
+					Specialities: { Specialities: string }[];
+					Image: {
+						data: { attributes: { url: string; alternativeText: string } };
+					};
+				};
+			}[];
 		};
+		updatedAt: string;
 	};
 };
 
@@ -114,6 +120,18 @@ export async function getClinicFromSlug(slug: string) {
                               data {
                                 attributes {
                                   Name
+                                  Slug
+                                  Specialities {
+                                    Specialities
+                                  }
+                                  Image {
+                                    data {
+                                      attributes {
+                                        url
+                                        alternativeText
+                                      }
+                                    }
+                                  }
                                 }
                               }
                             }

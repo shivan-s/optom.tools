@@ -34,11 +34,11 @@
 	<Loading />
 {/if}
 {#if isSuccess && clinic}
-<pre>{JSON.stringify(clinic, null, 2 )}</pre>
+	<pre>{JSON.stringify(clinic, null, 2)}</pre>
 	<h1 class="text-center">{clinic.attributes.Name}</h1>
-{#if clinic.attributes.Link}
-	<a href={clinic.attributes.Link}>{clinic.attributes.Link}</a>
-{/if}
+	{#if clinic.attributes.Link}
+		<a href={clinic.attributes.Link}>{clinic.attributes.Link}</a>
+	{/if}
 	<h2>
 		<span class="flex items-center gap-2">
 			<Icon icon="material-symbols:location-on" />
@@ -46,21 +46,21 @@
 		>
 	</h2>
 	<div class="flex flex-col gap-2">
-		<!-- {#each clinic.attributes.addresses as address} -->
-		<!-- 	<div class="flex flex-col gap-1"> -->
-		<!-- 		<span>{address.street}</span> -->
-		<!-- 		<span>{address.city} {address.postcode || ''}</span> -->
-		<!-- 		<span>{address.country}</span> -->
-		<!-- 	</div> -->
-		<!-- {/each} -->
+		{#each clinic.attributes.Address as address}
+			<div class="flex flex-col gap-1">
+				<span>{address.Street}</span>
+				<span>{address.City}</span>
+				<span>{address.Country.replaceAll('_', ' ')}</span>
+			</div>
+		{/each}
 	</div>
 	<h2>
 		<span class="flex items-center gap-2"
 			><Icon icon="mdi:account-outline" />Practitioners</span
 		>
 	</h2>
-	{#if clinic.Optometrists.length > 0}
-		{#each clinic.Optometrists as practitioner}
+	{#if clinic.attributes.Optometrists.data.length > 0}
+		{#each clinic.attributes.Optometrists.data as optometrist}
 			<div class="card lg:card-side bg-base-100 shadow-xl">
 				<!-- <figure> -->
 				<!-- 	<img -->
@@ -69,18 +69,16 @@
 				<!-- 	/> -->
 				<!-- </figure> -->
 				<div class="card-body">
-					<h3 class="card-title">{practitioner.name}</h3>
+					<h3 class="card-title">{optometrist.attributes.Name}</h3>
 					<div class="flex flex-wrap gap-1">
-						{#each practitioner.profession as profession}
-							<div class="badge badge-primary capitalize">{profession}</div>
-						{/each}
-						{#each practitioner.subSpecialties as subSpeciality}
-							<div class="badge capitalize">{subSpeciality}</div>
-						{/each}
+						<div class="badge badge-primary capitalize">Optometrist</div>
+						<!-- {#each optometrist.attributes.specialties as subSpeciality} -->
+						<!-- 	<div class="badge capitalize">{subSpeciality}</div> -->
+						<!-- {/each} -->
 					</div>
 					<div class="card-actions justify-end">
 						<a
-							href={`/practitioners/${practitioner.slug.current}`}
+							href={`/practitioners/${optometrist.attributes.Slug}`}
 							class="btn btn-primary no-underline text-normal">More</a
 						>
 					</div>
