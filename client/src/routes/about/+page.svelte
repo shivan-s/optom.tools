@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getAbout } from '$lib/cms';
+  import { getAbout } from '$lib/api';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';

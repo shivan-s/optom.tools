@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPractitioners } from '$lib/cms';
+	import { getOptometrists } from '$lib/api';
 	import { createInfiniteQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';
@@ -12,9 +12,9 @@
 	let q = $page.url.searchParams.get('q');
 
 	$: query = createInfiniteQuery({
-		queryKey: ['pracitioners', filter, q],
-		queryFn: ({ pageParam = undefined }) =>
-			getPractitioners(filter, q, pageParam, LIMIT),
+		queryKey: ['pracitioners', q],
+		queryFn: ({ pageParam = 0 }) =>
+			getOptometrists(q, pageParam, LIMIT),
 		getNextPageParam: (lastPage) => {
 			if (lastPage.cursor) {
 				return lastPage.cursor;
@@ -38,7 +38,7 @@
 	}
 </script>
 
-<h1 class="text-center">Practitioners</h1>
+<h1 class="text-center">Optometrists</h1>
 
 <form
 	class="flex flex-col gap-2"
@@ -47,22 +47,8 @@
 	data-sveltekit-keepfocus
 >
 	<div class="form-control">
-		<label for="filter" class="label"
-			><span class="label-text">Filter</span></label
-		>
-		<select
-			class="select select-bordered w-fit"
-			name="filter"
-			bind:value={filter}
-		>
-			<option selected value={''}>All</option>
-			<option value="optometrist">Optometrist</option>
-			<option value="ophthalmologist">Ophthalmologist</option>
-		</select>
-	</div>
-	<div class="form-control">
 		<label class="input-group w-full">
-			<input name="q" bind:value={q} class="input input-bordered w-full" />
+			<input placeholder="Search optometrists" name="q" bind:value={q} class="input input-bordered w-full" />
 			<button class="btn btn-square">
 				<Icon icon="ic:outline-search" />
 			</button>
@@ -134,6 +120,6 @@
 			{/if}
 		</button>
 	{:else}
-		<Alert message="No clinics found" />
+		<Alert message="No optometrists found" />
 	{/if}
 {/if}

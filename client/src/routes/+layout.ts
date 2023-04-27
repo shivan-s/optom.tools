@@ -1,7 +1,7 @@
 import { QueryClient } from '@tanstack/svelte-query';
 import type { LayoutLoad } from './$types';
 import { browser } from '$app/environment';
-import { getAbout, getClinics } from '$lib/cms';
+import { getAbout, getClinics } from '$lib/api';
 
 export const load: LayoutLoad = async () => {
 	const queryClient = new QueryClient({
@@ -18,8 +18,8 @@ export const load: LayoutLoad = async () => {
 	});
 
 	await queryClient.prefetchQuery({
-		queryKey: ['clinics', null],
-		queryFn: ({ pageParam = 0 }) => getClinics(null, pageParam, 10)
+		queryKey: ['clinics', ''],
+		queryFn: ({ pageParam = 0 }) => getClinics('', pageParam, 10)
 	});
 
 	return { queryClient };

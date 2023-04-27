@@ -20,8 +20,8 @@
 			icon: 'mdi:calculator'
 		},
 		{
-			label: 'Practitioners',
-			link: '/practitioners',
+			label: 'Optometrists',
+			link: '/optometrists',
 			icon: 'mdi:account-outline'
 		},
 		{

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getClinics } from '$lib/cms';
+	import { getClinics } from '$lib/api';
 	import { createInfiniteQuery } from '@tanstack/svelte-query';
 	import Loading from '../../components/Loading.svelte';
 	import Error from '../../components/Error.svelte';
@@ -8,12 +8,17 @@
 	import Alert from '../../components/Alert.svelte';
 
 	const LIMIT = 10;
-	let q = $page.url.searchParams.get('q');
+	let q = $page.url.searchParams.get('q') || '';
 
 	$: query = createInfiniteQuery({
 		queryKey: ['clinics', q],
 		queryFn: ({ pageParam = 0 }) => getClinics(q, pageParam, LIMIT),
-        getNextPageParam: (lastPage) => lastPage.cursor
+		getNextPageParam: (lastPage) => {
+			if (lastPage.cursor) {
+				return lastPage.cursor;
+			}
+			return undefined;
+		}
 	});
 
 	$: pages = $query.data?.pages;

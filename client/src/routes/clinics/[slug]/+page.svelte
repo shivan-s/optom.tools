@@ -1,11 +1,13 @@
 <script lang="ts">
-	import { getClinicFromSlug } from '$lib/cms';
+	import { getClinicFromSlug } from '$lib/api';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Loading from '../../../components/Loading.svelte';
 	import Error from '../../../components/Error.svelte';
 	import { page } from '$app/stores';
 	import { formatDistanceToNow } from 'date-fns';
 	import Icon from '@iconify/svelte';
+	import { PUBLIC_CMS_BASE_URL } from '$env/static/public';
+	import Alert from '../../../components/Alert.svelte';
 
 	const pathname = $page.url.pathname;
 
@@ -62,19 +64,23 @@
 	{#if clinic.attributes.Optometrists.data.length > 0}
 		{#each clinic.attributes.Optometrists.data as optometrist}
 			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<!-- <figure> -->
-				<!-- 	<img -->
-				<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-				<!-- 		alt="Album" -->
-				<!-- 	/> -->
-				<!-- </figure> -->
+				<figure>
+					<img
+						src={`${PUBLIC_CMS_BASE_URL}${
+							optometrist.attributes.Image.data.attributes.url ||
+							'/uploads/placeholder.png'
+						}`}
+						alt={optometrist.attributes.Image.data.attributes
+							.alternativeText || `${optometrist.attributes.Name}'s Image`}
+					/>
+				</figure>
 				<div class="card-body">
 					<h3 class="card-title">{optometrist.attributes.Name}</h3>
 					<div class="flex flex-wrap gap-1">
 						<div class="badge badge-primary capitalize">Optometrist</div>
-						<!-- {#each optometrist.attributes.specialties as subSpeciality} -->
-						<!-- 	<div class="badge capitalize">{subSpeciality}</div> -->
-						<!-- {/each} -->
+						{#each optometrist.attributes.Specialities as speciality}
+							<div class="badge capitalize">{speciality.Specialities}</div>
+						{/each}
 					</div>
 					<div class="card-actions justify-end">
 						<a
