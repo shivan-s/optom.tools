@@ -11,9 +11,8 @@
 
 <form method="GET" action="?q" data-sveltekit-keepfocus>
 	<div class="form-control">
-		<label for="q" class="label"><span class="label-text">Search</span></label>
 		<label class="input-group w-full">
-			<input name="q" bind:value={q} class="input input-bordered" />
+			<input name="q" bind:value={q} class="input input-bordered w-full" placeholder="Search Calculators" />
 			<button class="btn btn-square">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

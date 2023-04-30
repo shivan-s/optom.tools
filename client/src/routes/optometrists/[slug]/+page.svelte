@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPracititionerFromSlug } from '$lib/sanity';
+	import { getOptometristFromSlug } from '$lib/api';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Loading from '../../../components/Loading.svelte';
 	import Error from '../../../components/Error.svelte';
@@ -7,6 +7,7 @@
 	import { formatDistanceToNow } from 'date-fns';
 	import Icon from '@iconify/svelte';
 	import Alert from '../../../components/Alert.svelte';
+	import ClinicCard from '../../../components/ClinicCard.svelte';
 
 	const pathname = $page.url.pathname;
 
@@ -14,10 +15,10 @@
 
 	$: query = createQuery({
 		queryKey: ['pracitioner-slug', slug],
-		queryFn: () => getPracititionerFromSlug(slug)
+		queryFn: () => getOptometristFromSlug(slug)
 	});
 
-	$: practitioner = $query.data;
+	$: optometrist = $query.data;
 	$: error = $query.error;
 	$: isLoading = $query.isLoading;
 	$: isSuccess = $query.isSuccess;
@@ -34,24 +35,15 @@
 {#if isLoading}
 	<Loading />
 {/if}
-{#if isSuccess && practitioner}
-	<h1 class="text-center">{practitioner.name}</h1>
+{#if isSuccess && optometrist}
+	<h1 class="text-center">{optometrist.attributes.Name}</h1>
 	<div class="flex flex-wrap gap-1 justify-center">
-		{#each practitioner.profession as profession}
-			<div class="badge badge-primary capitalize">{profession}</div>
-		{/each}
-		{#if practitioner.locum}
+		<div class="badge badge-primary capitalize">optometrist</div>
+		{#if optometrist.attributes.Locum}
 			<div class="badge badge-secondary capitalize">locum</div>
 		{/if}
-		{#if practitioner.subSpecialties}
-			{#each practitioner.subSpecialties as specialty}
-				<div class="badge capitalize">
-					{specialty.replace(/([A-Z])/g, ' $1')}
-				</div>
-			{/each}
-		{/if}
-		{#if practitioner.specialties}
-			{#each practitioner.specialties as specialty}
+		{#if optometrist.attributes.Specialities}
+			{#each optometrist.attributes.Specialities as { Specialities: specialty }}
 				<div class="badge capitalize">
 					{specialty.replace(/([A-Z])/g, ' $1')}
 				</div>
@@ -61,39 +53,24 @@
 	<div class="flex flex-wrap gap-1 justify-center" />
 	<h2>
 		<span class="flex items-center gap-2"
-			><Icon icon="icon-park-outline:glasses-one" />{practitioner.clinics
-				?.length === 1
+			><Icon icon="icon-park-outline:glasses-one" />{optometrist.attributes.Clinics?.data.length === 1
 				? 'Clinics'
 				: 'Clinic'}</span
 		>
 	</h2>
-	{#if practitioner.clinics.length > 0}
-		{#each practitioner.clinics as clinic}
-			<div class="card lg:card-side bg-base-100 shadow-xl">
-				<!-- <figure> -->
-				<!-- 	<img -->
-				<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-				<!-- 		alt="Album" -->
-				<!-- 	/> -->
-				<!-- </figure> -->
-				<div class="card-body">
-					<h3 class="card-title">{clinic.name}</h3>
-					<div class="card-actions justify-end">
-						<a
-							href={`/pracitioners/${practitioner.slug.current}`}
-							class="btn btn-primary no-underline text-normal">More</a
-						>
-					</div>
-				</div>
-			</div>
+	{#if optometrist.attributes.Clinics.data.length > 0}
+		{#each optometrist.attributes.Clinics.data as clinic}
+			<ClinicCard {clinic} />
 		{/each}
 	{:else}
-		<Alert message={`${practitioner.name} is not registered to any clinics`} />
+		<Alert
+			message={`${optometrist.attributes.Name} is not registered to any clinics`}
+		/>
 	{/if}
 	<hr />
 	<!-- <pre>{JSON.stringify(practitioner, null, 2)}</pre> -->
 	<p class="text-sm text-right">
-		Updated {formatDistanceToNow(new Date(practitioner._updatedAt), {
+		Updated {formatDistanceToNow(new Date(optometrist.attributes.updatedAt), {
 			addSuffix: true
 		})}
 	</p>

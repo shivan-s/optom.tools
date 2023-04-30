@@ -1,6 +1,6 @@
 import { client } from '$lib/graphql';
 import { gql } from 'graphql-request';
-import type { About } from './types';
+import type { AboutPage } from '$lib/types';
 
 export async function getAbout() {
 	const query = gql`
@@ -16,6 +16,6 @@ export async function getAbout() {
 		}
 	`;
 
-	const about = (await client.request(query)) as About;
+	const about = (await client.request(query)) as AboutPage;
 	return { about };
 }

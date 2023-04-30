@@ -6,6 +6,7 @@
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
 	import Alert from '../../components/Alert.svelte';
+  import ClinicCard from '../../components/ClinicCard.svelte';
 
 	const LIMIT = 10;
 	let q = $page.url.searchParams.get('q') || '';
@@ -41,7 +42,7 @@
 <form method="GET" action="?q" data-sveltekit-keepfocus>
 	<div class="form-control">
 		<label class="input-group w-full">
-			<input name="q" bind:value={q} class="input input-bordered w-full" />
+			<input name="q" bind:value={q} class="input input-bordered w-full" placeholder="Search clinics" />
 			<button class="btn btn-square">
 				<Icon icon="ic:outline-search" />
 			</button>
@@ -59,26 +60,8 @@
 	<hr />
 	{#if pages.length > 0 && pages[0].clinics.data.length > 0}
 		{#each pages as { clinics }}
-			{#each clinics.data as { attributes: clinic }}
-				<div class="card lg:card-side bg-base-100 shadow-xl">
-					<!-- <figure> -->
-					<!-- 	<img -->
-					<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-					<!-- 		alt="Album" -->
-					<!-- 	/> -->
-					<!-- </figure> -->
-					<div class="card-body">
-						<h3 class="card-title">{clinic.Name}</h3>
-						<div class="card-actions justify-end">
-							<a
-								data-sveltekit-preload-code
-								data-sveltekit-preload-data
-								href={`/clinics/${clinic.Slug}`}
-								class="btn btn-primary no-underline text-normal">More</a
-							>
-						</div>
-					</div>
-				</div>
+			{#each clinics.data as clinic}
+				<ClinicCard clinic={clinic} />
 			{/each}
 		{/each}
 		<hr />

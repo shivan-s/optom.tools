@@ -6,15 +6,14 @@
 	import { page } from '$app/stores';
 	import Icon from '@iconify/svelte';
 	import Alert from '../../components/Alert.svelte';
+	import OptometristCard from '../../components/OptometristCard.svelte';
 
 	const LIMIT = 10;
-	let filter = $page.url.searchParams.get('filter') || '';
 	let q = $page.url.searchParams.get('q');
 
 	$: query = createInfiniteQuery({
 		queryKey: ['pracitioners', q],
-		queryFn: ({ pageParam = 0 }) =>
-			getOptometrists(q, pageParam, LIMIT),
+		queryFn: ({ pageParam = 0 }) => getOptometrists(q, pageParam, LIMIT),
 		getNextPageParam: (lastPage) => {
 			if (lastPage.cursor) {
 				return lastPage.cursor;
@@ -48,7 +47,12 @@
 >
 	<div class="form-control">
 		<label class="input-group w-full">
-			<input placeholder="Search optometrists" name="q" bind:value={q} class="input input-bordered w-full" />
+			<input
+				placeholder="Search optometrists"
+				name="q"
+				bind:value={q}
+				class="input input-bordered w-full"
+			/>
 			<button class="btn btn-square">
 				<Icon icon="ic:outline-search" />
 			</button>
@@ -64,45 +68,10 @@
 {/if}
 {#if isSuccess && pages}
 	<hr />
-	{#if pages.length > 0 && pages[0].practitioners?.length > 0}
-		{#each pages as { practitioners }}
-			{#each practitioners as practitioner}
-				<div class="card lg:card-side bg-base-100 shadow-xl">
-					<!-- <figure> -->
-					<!-- 	<img -->
-					<!-- 		src="https://media-exp1.licdn.com/dms/image/C5616AQESzK-_ikMJ0A/profile-displaybackgroundimage-shrink_200_800/0/1639983225117?e=2147483647&v=beta&t=_ojvy-ycYmCCJJnnEybfsKz5L_RaPwIJYY0jbwgjCag" -->
-					<!-- 		alt="Album" -->
-					<!-- 	/> -->
-					<!-- </figure> -->
-					<div class="card-body">
-						<h3 class="card-title">{practitioner.name}</h3>
-						<div class="flex flex-wrap gap-1">
-							{#each practitioner.profession as profession}
-								<div class="capitalize badge badge-primary">{profession}</div>
-							{/each}
-							{#if practitioner.specialties}
-								{#each practitioner.specialties as specialty}
-									<div class="capitalize badge">
-										{specialty.replace(/([A-Z])/g, ' $1')}
-									</div>
-								{/each}
-							{/if}
-							{#if practitioner.subSpecialties}
-								{#each practitioner.subSpecialties as specialty}
-									<div class="capitalize badge">
-										{specialty.replace(/([A-Z])/g, ' $1')}
-									</div>
-								{/each}
-							{/if}
-						</div>
-						<div class="card-actions justify-end">
-							<a
-								href={`/practitioners/${practitioner.slug.current}`}
-								class="btn btn-primary no-underline text-normal">More</a
-							>
-						</div>
-					</div>
-				</div>
+	{#if pages.length > 0 && pages[0].optometrists?.data.length > 0}
+		{#each pages as { optometrists }}
+			{#each optometrists.data as optometrist}
+				<OptometristCard optometrist={optometrist} />
 			{/each}
 		{/each}
 		<hr />
