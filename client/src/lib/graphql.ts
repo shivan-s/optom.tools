@@ -1,6 +1,4 @@
 import { GraphQLClient } from 'graphql-request';
-import { PUBLIC_CMS_PORT } from '$env/static/public';
+import { PUBLIC_CMS_URL } from '$env/static/public';
 
-const CMS_URL = `http://localhost:${PUBLIC_CMS_PORT}/graphql`;
-
-export const client = new GraphQLClient(CMS_URL, { headers: {} });
+export const client = new GraphQLClient(PUBLIC_CMS_URL, { headers: {} });
