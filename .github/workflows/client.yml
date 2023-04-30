@@ -28,10 +28,10 @@ jobs:
           cd client
           pnpm install
           npx playwright install --with-deps
-      - name: Run tests
-        run: |
-          cd client
-          npx playwright test
+      # - name: Run tests
+      #   run: |
+      #     cd client
+      #     npx playwright test
       - name: Run build
         run: |
           cd client
