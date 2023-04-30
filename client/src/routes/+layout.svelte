@@ -13,22 +13,22 @@
 			link: '/',
 			icon: 'ic:outline-home'
 		},
-		{ label: 'About', link: '/about', icon: 'mdi:about-circle-outline' },
+		/* { label: 'About', link: '/about', icon: 'mdi:about-circle-outline' }, */
 		{
 			label: 'Calculators',
 			link: '/calculators',
 			icon: 'mdi:calculator'
 		},
-		{
-			label: 'Optometrists',
-			link: '/optometrists',
-			icon: 'mdi:account-outline'
-		},
-		{
-			label: 'Clinics',
-			link: '/clinics',
-			icon: 'icon-park-outline:glasses-one'
-		}
+		/* { */
+		/* 	label: 'Optometrists', */
+		/* 	link: '/optometrists', */
+		/* 	icon: 'mdi:account-outline' */
+		/* }, */
+		/* { */
+		/* 	label: 'Clinics', */
+		/* 	link: '/clinics', */
+		/* 	icon: 'icon-park-outline:glasses-one' */
+		/* } */
 	];
 
 	export let data: LayoutData;
