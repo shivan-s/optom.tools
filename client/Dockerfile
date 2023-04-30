@@ -13,5 +13,4 @@ WORKDIR /code
 COPY package.json pnpm-lock.yaml /code/
 
 RUN pnpm install
-
 CMD ["npm", "run", "dev", "--", "--host"]

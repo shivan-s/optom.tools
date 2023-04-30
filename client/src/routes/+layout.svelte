@@ -13,14 +13,15 @@
 			link: '/',
 			icon: 'ic:outline-home'
 		},
+		{ label: 'About', link: '/about', icon: 'mdi:about-circle-outline' },
 		{
 			label: 'Calculators',
 			link: '/calculators',
 			icon: 'mdi:calculator'
 		},
 		{
-			label: 'Practitioners',
-			link: '/practitioners',
+			label: 'Optometrists',
+			link: '/optometrists',
 			icon: 'mdi:account-outline'
 		},
 		{
