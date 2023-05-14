@@ -1,7 +1,6 @@
 export default [
   "strapi::errors",
   "strapi::security",
-  "strapi::cors",
   "strapi::poweredBy",
   {
     name: "strapi::cors",
@@ -9,7 +8,11 @@ export default [
       enabled: true,
       methods: ["GET", "POST", "OPTIONS"],
       headers: "*",
-      origin: ["http://localhost:5173", "http://localhost:1337"],
+      origin: [
+        "http://localhost:5173",
+        "http://localhost:1337",
+        "https://optom-resources-client.page.dev",
+      ],
     },
   },
   "strapi::logger",
