@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_CMS_BASE_URL } from '$env/static/public';
+	import { PUBLIC_CMS_URL } from '$env/static/public';
 	import type { Optometrist } from '$lib/types';
 
 	export let optometrist: Optometrist;
@@ -8,7 +8,7 @@
 <div class="card bg-base-100 shadow-xl">
 	<figure>
 		<img
-			src={`${PUBLIC_CMS_BASE_URL}${
+			src={`${PUBLIC_CMS_URL}${
 				optometrist.attributes.Image.data.attributes.url ||
 				'/uploads/placeholder.png'
 			}`}
