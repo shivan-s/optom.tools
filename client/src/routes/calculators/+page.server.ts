@@ -1,5 +1,5 @@
 import type { Calculator } from '$lib/types';
-import type { PageLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
 const calculators: Calculator[] = [
 	{
@@ -28,4 +28,4 @@ export const load = (({ url }) => {
 		calculators: searchedCalculators,
 		q
 	};
-}) satisfies PageLoad;
+}) satisfies PageServerLoad;
