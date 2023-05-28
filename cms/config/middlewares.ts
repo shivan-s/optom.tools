@@ -8,11 +8,7 @@ export default [
       enabled: true,
       methods: ["GET", "POST", "OPTIONS"],
       headers: "*",
-      origin: [
-        "http://localhost:5173",
-        "http://localhost:1337",
-        "https://optom-resources-client.page.dev",
-      ],
+      origin: ["https://optom-resources.onrender.com"],
     },
   },
   "strapi::logger",
