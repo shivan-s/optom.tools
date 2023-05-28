@@ -15,6 +15,7 @@ RUN apk update && \
   rm -rf /var/cache/apk/* > /dev/null 2>&1
 
 # hadolint ignore=DL3016
+RUN npm config set network-timeout 600000 -g && npm install --only=production
 RUN npm update -g npm
 WORKDIR /code
 COPY ./package*.json ./
@@ -36,5 +37,7 @@ WORKDIR /code
 COPY --from=build /code/node_modules ./node_modules
 ENV PATH /code/node_modules/.bin:$PATH
 COPY --from=build /code/app ./
+RUN chown -R node:node /opt/app
+USER node
 EXPOSE 1337
-CMD ["npm", "run","start"]
+CMD ["npm", "run", "start"]
