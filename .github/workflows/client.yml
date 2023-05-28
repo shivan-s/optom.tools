@@ -11,6 +11,8 @@ on:
 
 jobs:
   client:
+    env:
+      PUBLIC_CMS_URL: ${{ secrets.PUBLIC_CMS_URL }}
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
