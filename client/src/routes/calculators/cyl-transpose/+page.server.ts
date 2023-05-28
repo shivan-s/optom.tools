@@ -10,24 +10,6 @@ const FormSchema = z.object({
 		.max(180, { message: 'Axis is between 0 to 180' })
 });
 
-type Prescription = {
-	sphere: number;
-	cylinder: number;
-	axis: number;
-};
-
-function cylinderTranspose(
-	sphere: number,
-	cylinder: number,
-	axis: number
-): Prescription {
-	const newSphere = sphere - cylinder;
-	const newCylinder = -1 * cylinder;
-	const newAxis = axis > 90 ? axis - 90 : axis + 90;
-
-	return { sphere: newSphere, cylinder: newCylinder, axis: newAxis };
-}
-
 export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
