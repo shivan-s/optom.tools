@@ -19,8 +19,8 @@ RUN npm update -g npm
 WORKDIR /code
 COPY ./package*.json ./
 ENV PATH /code/node_modules/.bin:$PATH
-RUN npm install --production
-WORKDIR /opt/app
+RUN npm install --omit=dev
+WORKDIR /code/app
 COPY ../../ .
 RUN npm run build
 
