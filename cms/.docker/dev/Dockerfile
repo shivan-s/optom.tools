@@ -4,7 +4,8 @@ ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
 # hadolint ignore=DL3018
-RUN apk update && apk add --no-cache build-base \
+RUN apk update && \
+  apk add --no-cache build-base \
   gcc \
   autoconf \
   automake \
@@ -17,17 +18,9 @@ RUN apk update && apk add --no-cache build-base \
 
 # hadolint ignore=DL3016
 RUN npm update -g npm
-
 WORKDIR /code
-
 COPY ./package*.json ./
-
-
 RUN npm install
-
 ENV PATH /code/node_modules/.bin:$PATH
-
 EXPOSE 1337
-
-# CMD ["tail", "-f", "/dev/null"]
 CMD ["npm", "run", "develop"]
