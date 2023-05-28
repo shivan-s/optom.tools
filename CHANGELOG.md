@@ -1,3 +1,10 @@
+## 0.5.0 (2023-05-28)
+
+### Feat
+
+- optometric intelligence article
+- fixing cyl-transpose
+
 ## 0.4.0 (2023-05-25)
 
 ### Feat
