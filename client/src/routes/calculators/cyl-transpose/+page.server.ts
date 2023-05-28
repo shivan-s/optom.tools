@@ -32,11 +32,15 @@ export const actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
 
-		const sphere = parseFloat(formData.get('sphere'));
-		const cylinder = parseFloat(formData.get('cylinder'));
-		const axis = parseFloat(formData.get('axis'));
+		const sphere = formData.get('sphere');
+		const cylinder = formData.get('cylinder');
+		const axis = formData.get('axis');
 
-		const result = FormSchema.safeParse({ sphere, cylinder, axis });
+		const result = FormSchema.safeParse({
+			sphere: parseFloat(String(sphere) ?? ''),
+			cylinder: parseFloat(String(cylinder ?? '')),
+			axis: parseFloat(String(axis ?? ''))
+		});
 
 		if (!result.success) {
 			const { fieldErrors, formErrors } = result.error.flatten();
