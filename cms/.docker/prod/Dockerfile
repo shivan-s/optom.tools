@@ -21,11 +21,10 @@ COPY ./package*.json ./
 ENV PATH /code/node_modules/.bin:$PATH
 RUN npm install --omit=dev
 WORKDIR /code/app
-COPY ../../ .
+COPY ../../ /code/app
 RUN npm run build
 
 FROM node:18-alpine
-
 # hadolint ignore=DL3018
 RUN apk update && \
   apk add --no-cache vips-dev && \
