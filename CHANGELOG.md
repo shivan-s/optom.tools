@@ -1,3 +1,10 @@
+## 0.5.3 (2023-05-28)
+
+### Fix
+
+- auth and other things
+- docker file
+
 ## 0.5.2 (2023-05-28)
 
 ### Fix
