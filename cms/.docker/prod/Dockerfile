@@ -15,7 +15,6 @@ RUN apk update && \
   rm -rf /var/cache/apk/* > /dev/null 2>&1
 
 # hadolint ignore=DL3016
-RUN npm config set network-timeout 600000 -g && npm install --only=production
 RUN npm update -g npm
 WORKDIR /code
 COPY ./package*.json ./
