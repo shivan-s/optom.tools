@@ -20,8 +20,7 @@ WORKDIR /code
 COPY ./package*.json ./
 ENV PATH /code/node_modules/.bin:$PATH
 RUN npm install --omit=dev
-WORKDIR /code/app
-COPY ../../ /code/app
+COPY ../../ /code
 RUN npm run build
 
 FROM node:18-alpine
@@ -32,10 +31,10 @@ RUN apk update && \
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /code
-COPY --from=build /code/node_modules ./node_modules
+COPY --from=build /code/node_modules /code/node_modules
 ENV PATH /code/node_modules/.bin:$PATH
-COPY --from=build /code/app ./
-RUN chown -R node:node /opt/app
+COPY --from=build /code /code
+RUN chown -R node:node /code
 USER node
 EXPOSE 1337
 CMD ["npm", "run", "start"]
