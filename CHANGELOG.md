@@ -1,3 +1,9 @@
+## 0.6.0 (2023-10-11)
+
+### Feat
+
+- changing the name of the application
+
 ## 0.5.7 (2023-05-29)
 
 ### Fix
