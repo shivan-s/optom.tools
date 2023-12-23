@@ -4,15 +4,15 @@
 	import VStack from '$components/VStack.svelte';
 	import type { PageData } from './$types';
 	import Button from '$components/Button.svelte';
+	import Input from '$components/Input.svelte';
 
 	export let data: PageData;
-	console.log(data);
 </script>
 
 <VStack>
 	<search>
 		<form data-sveltekit-noscroll data-sveltekit-keepfocus data-sveltekit-replacestate method="GET">
-			<input name="q" placeholder="Search" /><Button>Search</Button>
+			<Input name="q" placeholder="Search" /><Button>Search</Button>
 		</form>
 	</search>
 	<HStack>

@@ -1,4 +1,4 @@
-<nav>Optom Tools</nav>
+<nav><a href="/">OptomTools</a></nav>
 
 <style>
 	nav {

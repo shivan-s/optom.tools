@@ -9,5 +9,6 @@
 		text-transform: uppercase;
 		padding: 0.5rem 1rem 0.5rem 1rem;
 		border: 2px solid var(--primary-text);
+		background-color: var(--background);
 	}
 </style>

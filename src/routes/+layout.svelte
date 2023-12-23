@@ -1,13 +1,23 @@
 <script lang="ts">
+	import { dev } from '$app/environment';
+	import { page } from '$app/stores';
 	import Footer from '$components/Footer.svelte';
+	import H1 from '$components/H1.svelte';
 	import Navbar from '$components/Navbar.svelte';
 	import type { LayoutData } from './$types';
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: LayoutData;
 </script>
 
 <svelte:head>
-	<title>Optom Tools</title>
+	{#if $page.data['pageTitle']}
+		<title>
+			{$page.data['pageTitle']} - OptomTools
+		</title>
+	{:else}
+		<title>OptomTools</title>
+	{/if}
 </svelte:head>
 
 <header>
@@ -15,7 +25,17 @@
 </header>
 {#key data.routePath}
 	<main>
-		<slot />
+		<div class="inner">
+			{#if dev && $page.data['form']}
+				<div class="full">
+					<SuperDebug data={$page.data['form']} />
+				</div>
+			{/if}
+			{#if $page.data['pageTitle']}
+				<H1>{$page.data['pageTitle']}</H1>
+			{/if}
+			<slot />
+		</div>
 	</main>
 {/key}
 <footer>
@@ -43,13 +63,23 @@
 	}
 	main {
 		display: flex;
+		flex-direction: column;
 		margin-left: auto;
 		margin-right: auto;
+		gap: 1rem;
 		flex-grow: 1;
-		flex-direction: column;
 		align-items: center;
 		margin: 2rem 0 2rem 0;
-		padding: 0 2rem 0 2rem;
+	}
+	.inner {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		align-items: start;
+		max-width: 768px;
+	}
+	.full {
+		width: 100%;
 	}
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 600px) {
@@ -105,8 +135,25 @@
 		min-height: 100vh;
 		background-color: var(--primary-background);
 		color: var(--primary-text);
+		font-family: sans-serif;
 	}
 	:global(:target) {
 		outline: 2px dotted black;
+	}
+
+	:global(h1, h2, h3, h4, h5, h6) {
+		font-family: 'Optician Sans', sans-serif;
+	}
+
+	@font-face {
+		font-family: 'Optician Sans';
+		font-style: normal;
+		font-weight: 400;
+		src: url('/fonts/Optiker-K.eot');
+		src:
+			local(''),
+			url('/fonts/Optiker-K.eot?#iefix') format('embedded-opentype'),
+			url('/fonts/Optiker-K.woff') format('woff'),
+			url('/fonts/Optiker-K.ttf') format('truetype');
 	}
 </style>
