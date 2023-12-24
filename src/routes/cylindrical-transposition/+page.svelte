@@ -52,11 +52,3 @@
 		</Box>
 	{/if}
 </VStack>
-
-<style>
-	span {
-		text-align: center;
-		font-size: 1.5rem;
-		font-family: 'Optician Sans', sans-serif;
-	}
-</style>

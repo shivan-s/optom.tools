@@ -24,14 +24,18 @@
 		align-items: center;
 	}
 
-	span:hover {
-		display: flex;
+	span {
 		border-radius: 0.25rem;
-		box-shadow: 0.25rem 0.25rem 0.5rem var(--primary);
+		display: flex;
 		outline: 2px solid var(--primary);
 	}
 
+	span:hover {
+		box-shadow: 0.25rem 0.25rem 0.5rem var(--primary);
+	}
+
 	input {
+		font-size: 1.25rem;
 		border-top: 0;
 		border-left: 0;
 		border-right: 0;
@@ -44,6 +48,7 @@
 	}
 
 	button {
+		font-size: 1.25rem;
 		padding: 0.5rem 1rem 0.5rem 1rem;
 		border-top: none;
 		border-left: none;
@@ -54,15 +59,9 @@
 		font-family: 'Optician Sans', sans-serif;
 	}
 
-	button:hover {
+	button:hover,
+	button:active {
 		background-color: var(--primary);
 		color: var(--primary-background);
-		box-shadow: 0.25rem 0.25rem 0.5rem var(--primary);
-	}
-
-	button:active {
-		background-color: var(--primary-background);
-		color: var(--primary);
-		box-shadow: none;
 	}
 </style>

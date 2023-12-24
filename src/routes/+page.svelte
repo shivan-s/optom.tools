@@ -25,12 +25,18 @@
 		text-align: center;
 	}
 	span:nth-child(1) {
-		font-size: 2rem;
+		font-size: 3rem;
 	}
 	span:nth-child(2) {
-		font-size: 1.5rem;
+		font-size: 2rem;
 	}
 	span:nth-child(3) {
+		font-size: 1.5rem;
+	}
+	span:nth-child(4) {
 		font-size: 1.25rem;
+	}
+	span:nth-child(5) {
+		font-size: 1.125rem;
 	}
 </style>

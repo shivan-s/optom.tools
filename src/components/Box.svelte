@@ -10,11 +10,13 @@
 <style>
 	div {
 		text-align: center;
+		font-size: 1.5rem;
 		margin: 1rem 0rem;
 		padding: 1rem;
 		width: 100%;
 		border-radius: 0.25rem;
 		border: 2px solid var(--primary);
 		box-shadow: 0.25rem 0.25rem 0.5rem var(--primary);
+		font-family: 'Optician Sans', sans-serif;
 	}
 </style>

@@ -7,10 +7,6 @@
 </div>
 
 <style>
-	a {
-		text-align: center;
-		color: inherit;
-	}
 	div {
 		padding: 0.25rem 0.5rem;
 		overflow-wrap: normal;
@@ -20,6 +16,7 @@
 		border-bottom: 2px solid var(--primary);
 		background-color: var(--primary-background);
 		font-family: 'Optician Sans', sans-serif;
+		color: var(--primary);
 	}
 
 	div:hover {
@@ -35,5 +32,10 @@
 		color: var(--primary);
 		box-shadow: none;
 		outline: 2px solid var(--primary);
+	}
+
+	a {
+		text-align: center;
+		color: inherit;
 	}
 </style>
