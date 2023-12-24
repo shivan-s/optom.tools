@@ -1,4 +1,4 @@
-<nav><a href="/">OptomTools</a></nav>
+<nav><a href="/"><span>OptomTools</span></a></nav>
 
 <style>
 	nav {
@@ -6,5 +6,10 @@
 		border-bottom: 2px solid var(--primary-text);
 		display: flex;
 		justify-content: space-around;
+	}
+	span {
+		color: var(--primary-text);
+		font-size: 2rem;
+		font-family: 'Optician Sans', sans-serif;
 	}
 </style>

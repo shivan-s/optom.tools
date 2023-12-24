@@ -74,8 +74,8 @@
 	.inner {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 1rem;
-		align-items: start;
 		max-width: 768px;
 	}
 	.full {
@@ -142,6 +142,7 @@
 	}
 
 	:global(h1, h2, h3, h4, h5, h6) {
+		text-align: center;
 		font-family: 'Optician Sans', sans-serif;
 	}
 

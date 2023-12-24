@@ -14,17 +14,20 @@
 <style>
 	label {
 		display: flex;
+		text-align: center;
+		font-size: 0.75rem;
 		flex-direction: column;
+		gap: 0.5rem;
 	}
 
 	input {
 		text-align: center;
-		border-radius: 0.25rem;
+		font-size: 1.5rem;
 		border-top: 0;
 		border-left: 0;
 		border-right: 0;
 		border-bottom: 2px solid var(--primary);
-		padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+		padding: 0.5rem 1rem 0.5rem 1rem;
 	}
 
 	input:user-invalid {
@@ -36,6 +39,7 @@
 	}
 
 	input:focus {
+		border-radius: 0.25rem;
 		outline: 1px solid var(--primary);
 	}
 

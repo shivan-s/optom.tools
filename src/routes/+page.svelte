@@ -3,21 +3,34 @@
 	import HStack from '$components/HStack.svelte';
 	import VStack from '$components/VStack.svelte';
 	import type { PageData } from './$types';
-	import Button from '$components/Button.svelte';
-	import Input from '$components/Input.svelte';
+	import Search from '$components/Search.svelte';
 
 	export let data: PageData;
 </script>
 
 <VStack>
-	<search>
-		<form data-sveltekit-noscroll data-sveltekit-keepfocus data-sveltekit-replacestate method="GET">
-			<Input name="q" placeholder="Search" /><Button>Search</Button>
-		</form>
-	</search>
+	<Search value={data.q} />
 	<HStack>
 		{#each data.links as { name, url }}
-			<LinkButton href={url}>{name}</LinkButton>
+			<span>
+				<LinkButton href={url}>{name}</LinkButton>
+			</span>
 		{/each}
 	</HStack>
 </VStack>
+
+<style>
+	span {
+		margin: 0.5rem 0rem;
+		text-align: center;
+	}
+	span:nth-child(1) {
+		font-size: 2rem;
+	}
+	span:nth-child(2) {
+		font-size: 1.5rem;
+	}
+	span:nth-child(3) {
+		font-size: 1.25rem;
+	}
+</style>
