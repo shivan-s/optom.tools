@@ -34,7 +34,9 @@
 				</div>
 			{/if}
 			{#if $page.data['pageTitle']}
-				<H1>{$page.data['pageTitle']}</H1>
+				<a href={data.routePath}>
+					<H1>{$page.data['pageTitle']}</H1>
+				</a>
 			{/if}
 			<slot />
 		</div>
@@ -46,9 +48,10 @@
 
 <style>
 	:root {
-		--primary-background: rgba(255, 255, 255, 0.75);
-		--primary-text: hsla(0, 100%, 0%, 1);
-		--primary: #000000;
+		--primary-background: hsla(185, 99%, 99%);
+		--primary-nav-background: hsla(185, 99%, 99%, 0.9);
+		--primary-text: hsla(185, 99%, 3%);
+		--primary: hsla(185, 99%, 3%);
 	}
 	:global(*) {
 		padding: 0;

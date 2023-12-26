@@ -18,7 +18,7 @@
 			<VStack>
 				<Input
 					type="number"
-					label="Sphere"
+					label="Sphere (D)"
 					name="sphere"
 					step="0.25"
 					bind:value={$f.sphere}
@@ -26,7 +26,7 @@
 				/>
 				<Input
 					type="number"
-					label="Cylinder"
+					label="Cylinder (D)"
 					name="cylinder"
 					step="0.25"
 					bind:value={$f.cylinder}
@@ -34,7 +34,7 @@
 				/>
 				<Input
 					type="number"
-					label="Axis"
+					label="Axis (deg)"
 					name="axis"
 					step="0.5"
 					bind:value={$f.axis}

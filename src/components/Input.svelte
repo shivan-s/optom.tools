@@ -28,6 +28,7 @@
 		border-right: 0;
 		border-bottom: 2px solid var(--primary);
 		padding: 0.5rem 1rem 0.5rem 1rem;
+		background-color: var(--primary-background);
 	}
 
 	input:user-invalid {
