@@ -8,12 +8,14 @@
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 
 	export let data: LayoutData;
+
+	$: pageTitle = $page.data['pageTitle'];
 </script>
 
 <svelte:head>
-	{#if $page.data['pageTitle']}
+	{#if pageTitle}
 		<title>
-			{$page.data['pageTitle']} - OptomTools
+			{pageTitle} - OptomTools
 		</title>
 	{:else}
 		<title>OptomTools</title>
@@ -44,9 +46,9 @@
 
 <style>
 	:root {
-		--primary-background: #fff;
-		--primary-text: #000;
-		--primary: #000;
+		--primary-background: rgba(255, 255, 255, 0.75);
+		--primary-text: hsla(0, 100%, 0%, 1);
+		--primary: #000000;
 	}
 	:global(*) {
 		padding: 0;
@@ -139,11 +141,6 @@
 	}
 	:global(:target) {
 		outline: 2px dotted black;
-	}
-
-	:global(h1, h2, h3, h4, h5, h6) {
-		text-align: center;
-		font-family: 'Optician Sans', sans-serif;
 	}
 
 	@font-face {
