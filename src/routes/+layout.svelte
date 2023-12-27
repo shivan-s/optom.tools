@@ -82,6 +82,7 @@
 		align-items: center;
 		gap: 1rem;
 		max-width: 768px;
+		margin-bottom: 6rem;
 	}
 	.full {
 		width: 100%;
