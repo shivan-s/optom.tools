@@ -1,12 +1,35 @@
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
+import { fail } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
 
 const schema = z.object({
-	eyeSize: z.number().nonnegative()
+	rightPD: z.number({ required_error: 'Please provide right PD' }).nonnegative().default(30),
+	leftPD: z.number({ required_error: 'Please provide left PD' }).nonnegative().default(30),
+	frameSize: z.number({ required_error: 'Please provide frame size' }).nonnegative().default(53),
+	frameDBL: z.number({ required_error: 'Please provide frame DBL' }).nonnegative().default(15),
+	effectiveDiameter: z
+		.number({ required_error: 'Please provide effective diameter' })
+		.nonnegative()
+		.default(55),
+	bleed: z.number({ required_error: 'Please provide bleed' }).nonnegative().default(2)
 });
 
-export const load = async () => {
-	const form = superValidate(schema);
+function calculateMinimumBlankSize(params: {
+	monoPD: number;
+	frameSize: number;
+	frameDBL: number;
+	effectiveDiameter: number;
+	bleed: number;
+}): number {
+	const framePD = params.frameSize - params.frameDBL;
+	const decentration = Math.abs(framePD / 2 - params.monoPD);
+	const minimumBlankSize = decentration + params.effectiveDiameter + params.bleed;
+	return minimumBlankSize;
+}
+
+export const load: PageServerLoad = async () => {
+	const form = await superValidate(schema);
 	return {
 		form,
 		pageTitle: 'Minimum Blank Size'
@@ -14,10 +37,18 @@ export const load = async () => {
 };
 
 export const actions = {
-	default: async () => {
-		const form = superValidate(schema);
+	default: async ({ request }) => {
+		const form = await superValidate(request, schema);
+		if (!form.valid) {
+			return fail(400, { form });
+		}
+		const result = {
+			right: calculateMinimumBlankSize({ monoPD: form.data.rightPD, ...form.data }),
+			left: calculateMinimumBlankSize({ monoPD: form.data.leftPD, ...form.data })
+		};
 		return {
+			result,
 			form
 		};
 	}
-};
+} satisfies Actions;

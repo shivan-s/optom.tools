@@ -9,7 +9,8 @@
 
 <style>
 	div {
-		text-align: center;
+		display: flex;
+		justify-content: center;
 		font-size: 1.5rem;
 		margin: 1rem 0rem;
 		padding: 1rem;
