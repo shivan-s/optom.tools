@@ -4,14 +4,13 @@ import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 const schema = z.object({
-	rightPD: z.number({ required_error: 'Please provide right PD' }).nonnegative().default(30),
-	leftPD: z.number({ required_error: 'Please provide left PD' }).nonnegative().default(30),
-	frameSize: z.number({ required_error: 'Please provide frame size' }).nonnegative().default(53),
-	frameDBL: z.number({ required_error: 'Please provide frame DBL' }).nonnegative().default(15),
+	rightPD: z.number({ required_error: 'Please provide right PD' }).nonnegative(),
+	leftPD: z.number({ required_error: 'Please provide left PD' }).nonnegative(),
+	frameSize: z.number({ required_error: 'Please provide frame size' }).nonnegative(),
+	frameDBL: z.number({ required_error: 'Please provide frame DBL' }).nonnegative(),
 	effectiveDiameter: z
 		.number({ required_error: 'Please provide effective diameter' })
-		.nonnegative()
-		.default(55),
+		.nonnegative(),
 	bleed: z.number({ required_error: 'Please provide bleed' }).nonnegative().default(2)
 });
 

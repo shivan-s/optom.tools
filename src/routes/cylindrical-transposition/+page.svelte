@@ -6,6 +6,7 @@
 	import VStack from '$components/VStack.svelte';
 	import Box from '$components/Box.svelte';
 	import { enhance } from '$app/forms';
+	import { outputDioptre } from '$lib';
 
 	export let data: PageData;
 	export let form: ActionData;
@@ -18,6 +19,7 @@
 			<VStack>
 				<Input
 					type="number"
+					placeholder="-1.00"
 					label="Sphere (D)"
 					name="sphere"
 					step="0.25"
@@ -26,6 +28,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="+1.00"
 					label="Cylinder (D)"
 					name="cylinder"
 					step="0.25"
@@ -34,6 +37,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="180"
 					label="Axis (deg)"
 					name="axis"
 					step="0.5"
@@ -47,7 +51,8 @@
 	{#if form?.result}
 		<Box>
 			<span>
-				{form.result.sphere.toFixed(2)} / {form.result.cylinder.toFixed(2)} x {form.result.axis}
+				{outputDioptre(form.result.sphere)} / {outputDioptre(form.result.cylinder)} x {form.result
+					.axis}
 			</span>
 		</Box>
 	{/if}

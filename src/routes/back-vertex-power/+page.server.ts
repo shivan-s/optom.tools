@@ -3,11 +3,12 @@ import type { PageLoad } from '../$types';
 import type { Actions } from './$types';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fail } from '@sveltejs/kit';
+import type { Prescription } from '$lib';
 
 const schema = z.object({
-	sphere: z.number({ required_error: 'Please provide right sphere' }).default(-1),
-	cylinder: z.number().default(-1),
-	axis: z.number().nonnegative().lte(180, { message: 'Axis is below 180' }).default(90),
+	sphere: z.number({ required_error: 'Please provide right sphere' }),
+	cylinder: z.number(),
+	axis: z.number().nonnegative().lte(180, { message: 'Axis is below 180' }),
 	specBVD: z
 		.number({
 			required_error: 'Please provide spectacle back vertex'
@@ -16,13 +17,7 @@ const schema = z.object({
 		.default(12)
 });
 
-type Presciption = {
-	sphere: number;
-	cylinder: number;
-	axis: number;
-};
-
-function backVertexPower(params: Presciption & { specBVD: number; CLBVD: number }): Presciption {
+function backVertexPower(params: Prescription & { specBVD: number; CLBVD: number }): Prescription {
 	const sphere = params.sphere / (1 - (params.specBVD / 1000) * params.sphere);
 	const cylinder =
 		(params.sphere + params.cylinder) /

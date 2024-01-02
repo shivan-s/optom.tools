@@ -18,6 +18,7 @@
 			<VStack>
 				<Input
 					type="number"
+					placeholder="31"
 					label="Right PD (mm)"
 					name="rightPD"
 					step="0.01"
@@ -26,6 +27,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="30"
 					label="Left PD (mm)"
 					name="leftPD"
 					step="0.01"
@@ -34,6 +36,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="54"
 					label="Frame Size (mm)"
 					name="frameSize"
 					step="0.01"
@@ -42,6 +45,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="17"
 					label="Frame DBL (mm)"
 					name="frameDBL"
 					step="0.01"
@@ -50,6 +54,7 @@
 				/>
 				<Input
 					type="number"
+					placeholder="58"
 					label="Effective Diameter (mm)"
 					name="effectiveDiamter"
 					step="0.01"

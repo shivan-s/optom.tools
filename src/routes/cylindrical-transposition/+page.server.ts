@@ -4,13 +4,12 @@ import { superValidate } from 'sveltekit-superforms/server';
 import { fail } from '@sveltejs/kit';
 
 const schema = z.object({
-	sphere: z.number({ required_error: 'Please provide sphere' }).default(1),
-	cylinder: z.number({ required_error: 'Please provide cylinder' }).default(-1),
+	sphere: z.number({ required_error: 'Please provide sphere' }),
+	cylinder: z.number({ required_error: 'Please provide cylinder' }),
 	axis: z
 		.number({ required_error: 'Please provide axis' })
 		.nonnegative()
 		.lte(180, { message: 'Axis is below 180' })
-		.default(180)
 });
 
 type Prescription = {
