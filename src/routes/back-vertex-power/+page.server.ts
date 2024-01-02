@@ -26,7 +26,8 @@ function backVertexPower(params: Presciption & { specBVD: number; CLBVD: number 
 	const sphere = params.sphere / (1 - (params.specBVD / 1000) * params.sphere);
 	const cylinder =
 		(params.sphere + params.cylinder) /
-		(1 - (params.specBVD / 1000) * (params.sphere + params.cylinder));
+			(1 - (params.specBVD / 1000) * (params.sphere + params.cylinder)) -
+		sphere;
 	const axis = params.axis;
 	return {
 		sphere,
