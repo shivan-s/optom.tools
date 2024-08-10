@@ -6,7 +6,8 @@ export const load: PageLoad = ({ url }) => {
 	let links: { url: string; name: string }[] = [
 		{ url: '/cylindrical-transposition', name: 'Cylindrical Transposition' },
 		{ url: '/minimum-blank-size', name: 'Minimum Blank Size' },
-		{ url: '/back-vertex-power', name: 'Back Vertex Power' }
+		{ url: '/back-vertex-power', name: 'Back Vertex Power' },
+		{ url: '/over-refraction', name: 'Over Refraction' }
 	].sort((a, b) => {
 		if (a.name > b.name) {
 			return 1;

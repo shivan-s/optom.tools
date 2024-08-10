@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
+	import Accordion from '$components/Accordion.svelte';
 	import Footer from '$components/Footer.svelte';
 	import H1 from '$components/H1.svelte';
 	import Navbar from '$components/Navbar.svelte';
@@ -29,9 +30,10 @@
 	<main>
 		<div class="inner">
 			{#if dev && $page.data['form']}
-				<div class="full">
+				<Accordion id="super-debug">
+					<span slot="header">SuperDebug</span>
 					<SuperDebug data={$page.data['form']} />
-				</div>
+				</Accordion>
 			{/if}
 			{#if $page.data['pageTitle']}
 				<a href={data.routePath}>
@@ -52,6 +54,8 @@
 		--primary-nav-background: hsla(185, 99%, 99%, 0.9);
 		--primary-text: hsla(185, 99%, 3%);
 		--primary: hsla(185, 99%, 3%);
+		--red: red;
+		--green: green;
 	}
 	:global(*) {
 		padding: 0;
@@ -74,18 +78,15 @@
 		gap: 1rem;
 		flex-grow: 1;
 		align-items: center;
-		margin: 2rem 0 2rem 0;
+		margin: 2rem 0 25% 0;
 	}
 	.inner {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		max-width: 768px;
+		max-width: 922px;
 		margin-bottom: 6rem;
-	}
-	.full {
-		width: 100%;
 	}
 	/* Extra small devices (phones, 600px and down) */
 	@media only screen and (max-width: 600px) {

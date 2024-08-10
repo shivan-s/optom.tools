@@ -5,11 +5,20 @@
 	import type { ActionData, PageData } from './$types';
 	import VStack from '$components/VStack.svelte';
 	import Box from '$components/Box.svelte';
-	import { enhance } from '$app/forms';
+	import { loading } from '$lib/stores';
 
 	export let data: PageData;
 	export let form: ActionData;
-	const { form: f, constraints } = superForm(data.form);
+	const {
+		form: f,
+		constraints,
+		enhance
+	} = superForm(data.form, {
+		dataType: 'json',
+		resetForm: false,
+		onSubmit: () => loading.set(true),
+		onResult: () => loading.set(false)
+	});
 </script>
 
 <VStack>
@@ -56,7 +65,7 @@
 					bind:value={$f.effectiveDiameter}
 					{...$constraints.effectiveDiameter}
 				/>
-				<Button>Submit</Button>
+				<Button type="submit">Submit</Button>
 			</VStack>
 		</form>
 	</Box>

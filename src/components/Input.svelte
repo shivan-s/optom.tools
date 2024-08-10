@@ -1,33 +1,31 @@
 <script lang="ts">
-	export let label: string | null = null;
+	import type { HTMLInputAttributes } from 'svelte/elements';
+	interface $$Props extends HTMLInputAttributes {
+		value?: HTMLInputAttributes['value'];
+		group?: HTMLInputAttributes['bind:group'];
+	}
+
+	export let value: HTMLInputAttributes['value'] = null;
+	export let group: HTMLInputAttributes['bind:group'] = null;
 </script>
 
-{#if label}
-	<label>
-		<span>{label}</span>
-		<input {...$$restProps} />
-	</label>
+{#if $$props['type'] === 'radio'}
+	<input type="radio" bind:group {...$$restProps} />
+{:else if $$props['type'] === 'checkbox'}
+	<input type="checkbox" bind:group {...$$restProps} />
 {:else}
-	<input {...$$restProps} />
+	<input bind:value {...$$restProps} />
 {/if}
 
 <style>
-	label {
-		display: flex;
-		text-align: center;
-		font-size: 0.75rem;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-
 	input {
 		text-align: center;
-		font-size: 1.5rem;
+		font-size: 1rem;
 		border-top: 0;
 		border-left: 0;
 		border-right: 0;
 		border-bottom: 2px solid var(--primary);
-		padding: 0.5rem 1rem 0.5rem 1rem;
+		padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 		background-color: var(--primary-background);
 	}
 

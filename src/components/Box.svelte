@@ -1,6 +1,9 @@
-<script>
+<script lang="ts">
 	import { sineIn } from 'svelte/easing';
 	import { fade } from 'svelte/transition';
+	import type { HTMLBaseAttributes } from 'svelte/elements';
+
+	interface $$Props extends HTMLBaseAttributes {}
 </script>
 
 <div in:fade={{ easing: sineIn }} {...$$restProps}>
