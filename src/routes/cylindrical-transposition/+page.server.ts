@@ -2,6 +2,7 @@ import type { Actions, PageServerLoad } from './$types';
 import { z } from 'zod';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fail } from '@sveltejs/kit';
+import { addAngles } from '$lib/utils';
 
 const schema = z.object({
 	sphere: z.number({ required_error: 'Please provide sphere' }).default(1),
@@ -13,16 +14,10 @@ const schema = z.object({
 		.default(180)
 });
 
-type Prescription = {
-	sphere: number;
-	cylinder: number;
-	axis: number;
-};
-
-function cylindricalTranspose(params: Prescription): Prescription {
+function cylindricalTranspose(params: z.infer<typeof schema>): z.infer<typeof schema> {
 	const sphere = params.sphere - params.cylinder;
 	const cylinder = -1 * params.cylinder;
-	const axis = params.axis > 90 ? params.axis - 90 : params.axis + 90;
+	const axis = addAngles(params.axis, 90);
 
 	return { sphere, cylinder, axis };
 }

@@ -2,6 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { z } from 'zod';
 import type { PageServerLoad, Actions } from './$types';
+import { addAngles } from '$lib/utils';
 
 const eye = z.object({
 	lensSphere: z.number().min(-30).max(30).step(0.25).optional().default(0),
@@ -30,8 +31,22 @@ function calculateOverRefraction(params: {
 	overRxCylinder: number;
 	overRxAxis: number;
 }) {
-	const finalSphere = params.lensSphere - params.overRxSphere;
-	const finalCylinder = params.lensCylinder - params.overRxCylinder;
+	const lensSphericalMeridian = {
+		power: params.lensSphere,
+		angle: params.lensAxis
+	};
+	const lensCylindricalMeridian = {
+		power: params.lensSphere + params.lensCylinder,
+		angle: addAngles(params.lensAxis, 90)
+	};
+	const overRxSphericalMeridian = {
+		power: params.overRxSphere,
+		angle: params.overRxAxis
+	};
+	const overRxCylindricalMeridian = {
+		power: params.overRxSphere + params.overRxCylinder,
+		angle: addAngles(params.overRxAxis, 90)
+	};
 
 	return {
 		sphere: finalSphere,
