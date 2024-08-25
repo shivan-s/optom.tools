@@ -1,12 +1,5 @@
-[![Client](https://github.com/shivan-s/optom-resources/actions/workflows/client.yml/badge.svg)](https://github.com/shivan-s/optom-resources/actions/workflows/client.yml)
+# Optom Tools
 
-# Optometry Resources
-
-Using Strapi as a Headless CMS and SvelteKit to serve optometry related resources.cclient/
-
-Hosted using Cloudflare pages and deployed via Github actions.
+The goal of [optom.tools](optom.tools) is to provide easy to use calculators for anyone in the optic space.
 
 ## WIP
-
-- [Client](https://optom-resources-client.pages.dev)
-- [CMS](https://optom-resources-cms.pages.dev)
