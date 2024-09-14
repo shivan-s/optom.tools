@@ -81,7 +81,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 1rem;
-		max-width: 768px;
+		max-width: 75ch;
 		margin-bottom: 6rem;
 	}
 	.full {
