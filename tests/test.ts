@@ -1,6 +1,16 @@
 import { expect, test } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
-	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible();
+test.describe('Test suite', () => {
+	const links = [
+		{ name: 'home', link: '/' },
+		{ name: 'back-vertex-power', link: '/back-vertex-power' },
+		{ name: 'cylindrical-transposition', link: '/cylindrical-transposition' },
+		{ name: 'minimum-blank-size', link: '/minimum-blank-size' }
+	];
+	links.forEach(({ name, link }) => {
+		test(`${link} page`, async ({ page }) => {
+			await page.goto(link);
+			await expect(page).toHaveScreenshot(`${name}.png`);
+		});
+	});
 });
