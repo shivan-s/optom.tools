@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-          cache-dependency-path: pnpm-lock.json
 
       - name: ESLint
         run: |
@@ -49,7 +48,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-          cache-dependency-path: pnpm-lock.json
 
       - name: Check
         run: |

@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-          cache-dependency-path: pnpm-lock.json
 
       - name: Tests
         run: |
@@ -45,7 +44,6 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-          cache-dependency-path: pnpm-lock.json
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
