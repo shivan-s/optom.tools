@@ -1,5 +1,7 @@
 <div align="center">
-# Optom Tools
+	<h1>Optom Tools</h1>
+	[![Lint](https://github.com/shivan-s/optom.tools/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/shivan-s/optom.tools/actions/workflows/lint.yml)
+	[![Tests](https://github.com/shivan-s/optom.tools/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/shivan-s/optom.tools/actions/workflows/tests.yml)
 </div>
 
 The goal of [optom.tools](optom.tools) is to provide easy to use calculators for anyone in the optics space.
