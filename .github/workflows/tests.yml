@@ -31,9 +31,9 @@ jobs:
           npm run test:unit -- run
 
   e2e-tests:
-    name: E2E Tests
+    name: e2e Tests
     timeout-minutes: 60
-    runs-on: darwin-latest
+    runs-on: macos-latest # tests on a mac
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
         run: |
           pnpm install
           npx playwright install --with-deps
-          npm run test:integration
+          npm run test:e2e
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
