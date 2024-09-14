@@ -49,11 +49,12 @@ jobs:
         with:
           node-version: 20
           cache: 'pnpm'
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Tests
+        run: |
+          pnpm install
+          npx playwright install --with-deps
+          npm run test:integration
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
