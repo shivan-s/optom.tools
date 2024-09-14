@@ -1,5 +1,6 @@
 [![Lint](https://github.com/shivan-s/optom.tools/actions/workflows/lint.yml/badge.svg)](https://github.com/shivan-s/optom.tools/actions/workflows/lint.yml)
 [![Tests](https://github.com/shivan-s/optom.tools/actions/workflows/tests.yml/badge.svg)](https://github.com/shivan-s/optom.tools/actions/workflows/tests.yml)
+
 <div align="center">
 	<h1>Optom Tools</h1>
 	<hr />
