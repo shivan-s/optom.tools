@@ -11,3 +11,4 @@ vite.config.ts.timestamp-*
 .output
 /playwright-report/
 /playwright/.cache/
+/test-results
