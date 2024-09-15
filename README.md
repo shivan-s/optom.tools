@@ -10,7 +10,7 @@ The goal of [optom.tools](optom.tools) is to provide easy to use calculators for
 
 ## E2E Tests
 
-These tests must be run on a MacOS machine.
+These tests must be run on a MacOS machine. There is an [open issue](https://github.com/shivan-s/optom.tools/issues/35) to make this not the case.
 
 ## Resources
 
