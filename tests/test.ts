@@ -5,7 +5,8 @@ test.describe('Test suite', () => {
 		{ name: 'home', link: '/' },
 		{ name: 'back-vertex-power', link: '/back-vertex-power' },
 		{ name: 'cylindrical-transposition', link: '/cylindrical-transposition' },
-		{ name: 'minimum-blank-size', link: '/minimum-blank-size' }
+		{ name: 'minimum-blank-size', link: '/minimum-blank-size' },
+		{ name: '404-error-page', link: '/notfound' }
 	];
 	links.forEach(({ name, link }) => {
 		test(`${link} page`, async ({ page }) => {
