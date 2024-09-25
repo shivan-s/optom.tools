@@ -1,0 +1,22 @@
+name: Health Check
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '59 23 * * *'
+
+jobs:
+  health-check:
+    name: Health Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Health Check
+        run: |
+          status_code=$(curl --write-out %{http_code} --silent --output /dev/null https://optom.tools/healthz)
+          echo "Status code: $status_code"
+          if [[ "$status_code" -ne 200 ]] ; then
+            exit 1
+          else
+            exit 0
+          fi
