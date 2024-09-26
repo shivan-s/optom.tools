@@ -1,6 +1,10 @@
+<script>
+	import Logo from '$components/logo/Logo.svelte';
+</script>
+
 <nav>
-	<a href="/"
-		><img src="/favicon-light.png" alt="OptomTools logo" />
+	<a href="/">
+		<Logo width="2rem" color="var(--primary-text)" />
 		<span>OptomTools</span></a
 	>
 </nav>
@@ -17,9 +21,6 @@
 	a {
 		display: flex;
 		align-items: center;
-	}
-	img {
-		height: 2rem;
 	}
 	span {
 		color: var(--primary-text);

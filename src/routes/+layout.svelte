@@ -57,8 +57,8 @@
 	}
 	@media (prefers-color-scheme: dark) {
 		:root {
-			--primary-background: hsla(185, 99%, 80%);
-			--primary-nav-background: hsla(185, 99%, 3%, 0.9);
+			--primary-background: hsla(185, 99%, 99%);
+			--primary-nav-background: hsla(185, 99%, 99%, 0.9);
 			--primary-text: hsla(185, 99%, 3%);
 			--primary: hsla(185, 99%, 3%);
 		}
