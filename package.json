@@ -15,10 +15,11 @@
 		"test:unit": "vitest"
 	},
 	"devDependencies": {
+		"@inlang/paraglide-js": "1.11.3",
 		"@playwright/test": "^1.28.1",
 		"@sveltejs/adapter-auto": "^3.0.0",
 		"@sveltejs/adapter-cloudflare": "^3.0.1",
-		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/kit": "^2.8.3",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
@@ -38,6 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@inlang/paraglide-sveltekit": "0.12.1",
 		"@types/node": "^22.5.5",
 		"fuse.js": "^7.0.0"
 	}

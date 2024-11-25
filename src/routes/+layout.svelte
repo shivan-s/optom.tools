@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { ParaglideJS } from '@inlang/paraglide-sveltekit';
+	import { i18n } from '$lib/i18n';
+
 	import { dev } from '$app/environment';
 	import { page } from '$app/stores';
 	import Footer from '$components/Footer.svelte';
@@ -22,29 +25,31 @@
 	{/if}
 </svelte:head>
 
-<header>
-	<Navbar />
-</header>
-{#key data.routePath}
-	<main>
-		<div class="inner">
-			{#if dev && $page.data['form']}
-				<div class="full">
-					<SuperDebug data={$page.data['form']} />
-				</div>
-			{/if}
-			{#if $page.data['pageTitle']}
-				<a href={data.routePath}>
-					<H1>{$page.data['pageTitle']}</H1>
-				</a>
-			{/if}
-			<slot />
-		</div>
-	</main>
-{/key}
-<footer>
-	<Footer />
-</footer>
+<ParaglideJS {i18n}>
+	<header>
+		<Navbar />
+	</header>
+	{#key data.routePath}
+		<main>
+			<div class="inner">
+				{#if dev && $page.data['form']}
+					<div class="full">
+						<SuperDebug data={$page.data['form']} />
+					</div>
+				{/if}
+				{#if $page.data['pageTitle']}
+					<a href={data.routePath}>
+						<H1>{$page.data['pageTitle']}</H1>
+					</a>
+				{/if}
+				<slot />
+			</div>
+		</main>
+	{/key}
+	<footer>
+		<Footer />
+	</footer>
+</ParaglideJS>
 
 <style>
 	@media (prefers-color-scheme: dark) {
